@@ -33,67 +33,67 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameOfLife.cpp">
+    <ClCompile Include="src\Game\CellMatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GridRenderer.cpp">
+    <ClCompile Include="src\Game\GameOfLife.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\CellMatrixRenderer.cpp">
       <Filter>Source Files\Renderers</Filter>
     </ClCompile>
-    <ClCompile Include="HorizontalLineRenderer.cpp">
-      <Filter>Source Files\Renderers\LineRenderers</Filter>
-    </ClCompile>
-    <ClCompile Include="VerticalLineRenderer.cpp">
-      <Filter>Source Files\Renderers\LineRenderers</Filter>
-    </ClCompile>
-    <ClCompile Include="LineRenderer.cpp">
-      <Filter>Source Files\Renderers\LineRenderers</Filter>
-    </ClCompile>
-    <ClCompile Include="CellMatrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CellMatrixRenderer.cpp">
+    <ClCompile Include="src\Graphics\GridRenderer.cpp">
       <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\HorizontalLineRenderer.cpp">
+      <Filter>Source Files\Renderers\LineRenderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\LineRenderer.cpp">
+      <Filter>Source Files\Renderers\LineRenderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\VerticalLineRenderer.cpp">
+      <Filter>Source Files\Renderers\LineRenderers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameOfLife.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderer.h">
+    <ClInclude Include="include\Graphics\IRenderer.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="IColoredRenderer.h">
+    <ClInclude Include="include\Graphics\IColoredRenderer.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="GridRenderer.h">
+    <ClInclude Include="include\Graphics\HorizontalLineRenderer.h">
+      <Filter>Header Files\Renderers\LineRenderers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\GridRenderer.h">
       <Filter>Header Files\Renderers</Filter>
     </ClInclude>
-    <ClInclude Include="LineRenderer.h">
+    <ClInclude Include="include\Graphics\LineRenderer.h">
       <Filter>Header Files\Renderers\LineRenderers</Filter>
     </ClInclude>
-    <ClInclude Include="HorizontalLineRenderer.h">
+    <ClInclude Include="include\Graphics\VerticalLineRenderer.h">
       <Filter>Header Files\Renderers\LineRenderers</Filter>
     </ClInclude>
-    <ClInclude Include="VerticalLineRenderer.h">
-      <Filter>Header Files\Renderers\LineRenderers</Filter>
+    <ClInclude Include="include\Graphics\CellMatrixRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
     </ClInclude>
-    <ClInclude Include="CellMatrix.h">
+    <ClInclude Include="include\Utils\Vector2.h">
+      <Filter>Header Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utils\LinePosition.h">
+      <Filter>Header Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Cell.h">
+      <Filter>Header Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\CellMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinePosition.h">
-      <Filter>Header Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Cell.h">
-      <Filter>Header Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="CellMatrixRenderer.h">
-      <Filter>Header Files\Renderers</Filter>
+    <ClInclude Include="include\Game\GameOfLife.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

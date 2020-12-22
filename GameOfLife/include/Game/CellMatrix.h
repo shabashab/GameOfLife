@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include <vector>
 
-#include "Vector2.h"
-#include "Cell.h"
+#include "Utils/Vector2.h"
+#include "Game/Cell.h"
 
 
 namespace gol

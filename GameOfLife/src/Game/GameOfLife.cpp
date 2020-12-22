@@ -1,4 +1,4 @@
-#include "GameOfLife.h"
+#include "Game/GameOfLife.h"
 #include <iostream>
 #include <chrono>
 

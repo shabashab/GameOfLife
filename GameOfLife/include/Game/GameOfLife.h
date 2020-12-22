@@ -1,8 +1,8 @@
 #pragma once
-#include "GridRenderer.h"
-#include "CellMatrix.h"
-#include "CellMatrixRenderer.h"
-#include "Vector2.h"
+#include "Graphics/GridRenderer.h"
+#include "Game/CellMatrix.h"
+#include "Graphics/CellMatrixRenderer.h"
+#include "Utils/Vector2.h"
 
 
 class GameOfLife : public olc::PixelGameEngine

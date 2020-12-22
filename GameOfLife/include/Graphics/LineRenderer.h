@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "IColoredRenderer.h"
-#include "LinePosition.h"
+#include "Graphics/IColoredRenderer.h"
+#include "Utils/LinePosition.h"
 
 namespace gol
 {

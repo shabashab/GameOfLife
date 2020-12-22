@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "Vector2.h"
-#include "IColoredRenderer.h"
-#include "VerticalLineRenderer.h"
-#include "HorizontalLineRenderer.h"
+#include "Utils/Vector2.h"
+#include "Graphics/IColoredRenderer.h"
+#include "Graphics/VerticalLineRenderer.h"
+#include "Graphics/HorizontalLineRenderer.h"
 
 namespace gol
 {

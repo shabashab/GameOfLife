@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include "IRenderer.h"
-#include "CellMatrix.h"
-#include "Vector2.h"
+#include "Graphics/IRenderer.h"
+#include "Game/CellMatrix.h"
+#include "Utils/Vector2.h"
 
 namespace gol
 {

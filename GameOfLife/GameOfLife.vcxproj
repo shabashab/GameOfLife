@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,7 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,28 +142,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CellMatrix.cpp" />
-    <ClCompile Include="CellMatrixRenderer.cpp" />
-    <ClCompile Include="GameOfLife.cpp" />
-    <ClCompile Include="GridRenderer.cpp" />
-    <ClCompile Include="HorizontalLineRenderer.cpp" />
-    <ClCompile Include="LineRenderer.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="VerticalLineRenderer.cpp" />
+    <ClCompile Include="src\Game\CellMatrix.cpp" />
+    <ClCompile Include="src\Graphics\CellMatrixRenderer.cpp" />
+    <ClCompile Include="src\Game\GameOfLife.cpp" />
+    <ClCompile Include="src\Graphics\GridRenderer.cpp" />
+    <ClCompile Include="src\Graphics\HorizontalLineRenderer.cpp" />
+    <ClCompile Include="src\Graphics\LineRenderer.cpp" />
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Graphics\VerticalLineRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cell.h" />
-    <ClInclude Include="CellMatrix.h" />
-    <ClInclude Include="CellMatrixRenderer.h" />
-    <ClInclude Include="GameOfLife.h" />
-    <ClInclude Include="GridRenderer.h" />
-    <ClInclude Include="HorizontalLineRenderer.h" />
-    <ClInclude Include="IColoredRenderer.h" />
-    <ClInclude Include="IRenderer.h" />
-    <ClInclude Include="LinePosition.h" />
-    <ClInclude Include="LineRenderer.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="VerticalLineRenderer.h" />
+    <ClInclude Include="include\Game\Cell.h" />
+    <ClInclude Include="include\Game\CellMatrix.h" />
+    <ClInclude Include="include\Graphics\CellMatrixRenderer.h" />
+    <ClInclude Include="include\Game\GameOfLife.h" />
+    <ClInclude Include="include\Graphics\GridRenderer.h" />
+    <ClInclude Include="include\Graphics\HorizontalLineRenderer.h" />
+    <ClInclude Include="include\Graphics\IColoredRenderer.h" />
+    <ClInclude Include="include\Graphics\IRenderer.h" />
+    <ClInclude Include="include\Utils\LinePosition.h" />
+    <ClInclude Include="include\Graphics\LineRenderer.h" />
+    <ClInclude Include="include\Utils\Vector2.h" />
+    <ClInclude Include="include\Graphics\VerticalLineRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

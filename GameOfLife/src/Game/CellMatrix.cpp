@@ -1,4 +1,4 @@
-﻿#include "CellMatrix.h"
+﻿#include "Game/CellMatrix.h"
 
 void gol::CellMatrix::reset_cells_neighbours_count()
 {

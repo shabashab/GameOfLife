@@ -1,4 +1,4 @@
-﻿#include "CellMatrixRenderer.h"
+﻿#include "Graphics/CellMatrixRenderer.h"
 
 
 gol::CellMatrixRenderer::CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> matrix, gol::Vector2 cell_size,

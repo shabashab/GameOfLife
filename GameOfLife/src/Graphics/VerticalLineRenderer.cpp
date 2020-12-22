@@ -1,4 +1,4 @@
-﻿#include "VerticalLineRenderer.h"
+﻿#include "Graphics/VerticalLineRenderer.h"
 
 gol::VerticalLineRenderer::VerticalLineRenderer(olc::Pixel color, int screen_h,  int x_pos)
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "IRenderer.h"
+#include "Graphics/IRenderer.h"
 
 namespace gol
 {

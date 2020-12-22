@@ -1,4 +1,4 @@
-﻿#include "HorizontalLineRenderer.h"
+﻿#include "Graphics/HorizontalLineRenderer.h"
 
 gol::HorizontalLineRenderer::HorizontalLineRenderer(olc::Pixel color, int screen_w, int y_pos)
 {

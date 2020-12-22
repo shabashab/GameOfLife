@@ -1,4 +1,4 @@
-﻿#include "LineRenderer.h"
+﻿#include "Graphics/LineRenderer.h"
 
 void gol::LineRenderer::setPosition(gol::LinePosition position)
 {
