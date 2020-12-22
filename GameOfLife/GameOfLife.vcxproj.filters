@@ -22,14 +22,14 @@
     <Filter Include="Source Files\Renderers">
       <UniqueIdentifier>{54132563-0356-4da3-a3d9-2660d73d21b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Structs">
-      <UniqueIdentifier>{d49536cd-c467-4da1-83c1-cbb5ddef4e37}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Renderers\LineRenderers">
       <UniqueIdentifier>{81cbd98c-ffc9-4600-b4ea-988d25fbd254}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Renderers\LineRenderers">
       <UniqueIdentifier>{aff0ba61-0f9c-4822-81da-84ab5de1e684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Types">
+      <UniqueIdentifier>{4dbd5cda-f1bf-4944-9aef-ebddcf600a08}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,12 @@
     <ClCompile Include="LineRenderer.cpp">
       <Filter>Source Files\Renderers\LineRenderers</Filter>
     </ClCompile>
+    <ClCompile Include="CellMatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CellMatrixRenderer.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="olcPixelGameEngine.h">
@@ -68,12 +74,6 @@
     <ClInclude Include="GridRenderer.h">
       <Filter>Header Files\Renderers</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="LinePosition.h">
-      <Filter>Header Files\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="LineRenderer.h">
       <Filter>Header Files\Renderers\LineRenderers</Filter>
     </ClInclude>
@@ -82,6 +82,21 @@
     </ClInclude>
     <ClInclude Include="VerticalLineRenderer.h">
       <Filter>Header Files\Renderers\LineRenderers</Filter>
+    </ClInclude>
+    <ClInclude Include="CellMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinePosition.h">
+      <Filter>Header Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Header Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
+      <Filter>Header Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="CellMatrixRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

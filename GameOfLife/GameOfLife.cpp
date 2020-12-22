@@ -3,119 +3,36 @@
 #include <chrono>
 
 
-void GameOfLife::DrawCells(olc::Pixel color)
+
+void GameOfLife::fill_cell_by_cursor_pos(gol::Vector2 cursor_position, bool new_value)
 {
-	for (auto pos : blackCellsPos) {
-		FillRect(pos.x * cell_w, pos.y * cell_h, cell_w, cell_h, color);
-	}
+	const gol::Vector2 cell_position(
+		cursor_position.x / this->cell_size_.x,
+		cursor_position.y / this->cell_size_.y
+	);
+	this->cell_matrix_->setCell(cell_position, new_value);
 }
 
-void GameOfLife::CalculateNeighboursCount()
+gol::Vector2 GameOfLife::get_mouse_position_vector() const
 {
-	//Reset neighbours count array
-	ResetNeighboursCount(false);
-
-	//Go through black cells positions
-	for (auto pos : blackCellsPos) {
-		//On each black cell add 1 to neighbours' neighbours count
-		for (int x_offset = -1; x_offset <= 1; x_offset++) {
-			for (int y_offset = -1; y_offset <= 1; y_offset++) {
-				if (x_offset == 0 && y_offset == 0) continue;
-				if (pos.x + x_offset < 0 || pos.y + y_offset < 0) continue;
-				if (!(!(cells.size() < pos.x + x_offset) || !(cells[0].size() < pos.y + y_offset))) continue;
-
-				cells[pos.x + x_offset][pos.y + y_offset].neighboursCount++;
-			}
-		}
-	}
-}
-
-void GameOfLife::ApplyNeighboursCount()
-{
-	ResetBlackCellsPos();
-	for (int x = 0; x < cells.size(); x++) {
-		for (int y = 0; y < cells[x].size(); y++) {
-			Cell* cell = &cells[x][y];
-
-			//RULES
-
-			//By default cell dies
-			bool lives = false;
-
-			//Cell doesn't die if two or three neighbours
-			if (cell->isAlive && (cell->neighboursCount == 2 || cell->neighboursCount == 3)) lives = true;
-
-			//Cell becomes alive if three neighbours
-			if (!cell->isAlive && cell->neighboursCount == 3) lives = true;
-
-			//If lives add to black cells array
-			FillCell(x, y, lives);
-		}
-	} 
-}
-
-void GameOfLife::ResetNeighboursCount(bool fullReset)
-{
-	if(fullReset)
-		cells = std::vector<std::vector<Cell>>((int)(ScreenWidth() / cell_w), std::vector<Cell>((int)(ScreenHeight() / cell_h)));
-	else
-	{
-		for (auto& cellArr : cells) {
-			for (auto& cell : cellArr) {
-				cell.neighboursCount = 0;
-			}
-		}
-	}
-}
-
-void GameOfLife::ResetBlackCellsPos()
-{
-	blackCellsPos.clear();
-}
-
-void GameOfLife::FillCellByCursorPos(int cursor_x, int cursor_y, bool value)
-{
-	int x = (int)((float)cursor_x / cell_w);
-	int y = (int)((float)cursor_y / cell_h);
-	
-	FillCell(x, y, value);
-}
-
-void GameOfLife::FillCell(int x, int y, bool value)
-{
-	int index = -1;
-	for (int i = 0; i < blackCellsPos.size(); i++) {
-		if (blackCellsPos[i].x == x && blackCellsPos[i].y == y) {
-			index = i;
-			break;
-		}
-	}
-
-	if (value && (index < 0)) {
-		blackCellsPos.push_back(Vector2{ x = x, y = y });
-	}
-	else if (!value && (index >= 0)) {
-		blackCellsPos.erase(blackCellsPos.begin() + index);
-	}
-
-	cells[x][y].isAlive = value;
+	return {this->GetMouseX(), this->GetMouseY()};
 }
 
 GameOfLife::GameOfLife()
 {
-	this->cell_w = 20;
-	this->cell_h = 20;
+	this->cell_size_ = gol::Vector2(20, 20);
 	this->grid_renderer_ = 
-		gol::GridRenderer(
-			cell_w,
-			gol::Vector2{ this->ScreenWidth(), this->ScreenHeight() }, 
-			olc::GREY);
+		gol::GridRenderer(this->cell_size_, gol::Vector2(this->ScreenWidth(), this->ScreenHeight()), olc::GREY);
 }
 
 bool GameOfLife::OnUserCreate()
 {
-	ResetBlackCellsPos();
-	ResetNeighboursCount();
+	this->cell_matrix_ = 
+		std::make_shared<gol::CellMatrix>(500, 500);
+	
+	this->cell_matrix_renderer_ = 
+		std::make_unique<gol::CellMatrixRenderer>(this->cell_matrix_, this->cell_size_, olc::BLACK);
+	
 	return true;
 }
 
@@ -126,21 +43,16 @@ bool GameOfLife::OnUserUpdate(float fDeltaTime)
 	if(this->render_grid)
 		this->grid_renderer_.Render(*this);
 
-	if (GetMouse(0).bHeld) {
-		FillCellByCursorPos(GetMouseX(), GetMouseY(), true);
+	if (GetMouse(0).bPressed) {
+		this->fill_cell_by_cursor_pos(this->get_mouse_position_vector(), true);
 	}
 	
-	if (GetMouse(1).bHeld) {
-		FillCellByCursorPos(GetMouseX(), GetMouseY(), false);
+	if (GetMouse(1).bPressed) {
+		this->fill_cell_by_cursor_pos(this->get_mouse_position_vector(), false);
 	}
 
 	if (GetKey(olc::RIGHT).bHeld) {
-		auto start = std::chrono::steady_clock::now();
-		CalculateNeighboursCount();
-		ApplyNeighboursCount();
-		auto end = std::chrono::steady_clock::now();
-		std::chrono::duration<double> elapsed_time = end - start;
-		this->last_count_time = elapsed_time.count();
+		cell_matrix_->step();
 	}
 
 	if (GetKey(olc::A).bPressed)
@@ -149,12 +61,10 @@ bool GameOfLife::OnUserUpdate(float fDeltaTime)
 	}
 
 	if (GetKey(olc::C).bPressed) {
-		ResetBlackCellsPos();
+		cell_matrix_->reset();
 	}
-	
-	DrawCells(olc::BLACK);
-	DrawString(0, 0, "Time: " + std::to_string(this->last_count_time), olc::BLACK);
-	DrawString(0, 10, "Black cells count: " + std::to_string(blackCellsPos.size()), olc::BLACK);
+
+	this->cell_matrix_renderer_->Render(*this);
 
 	return true;
 }

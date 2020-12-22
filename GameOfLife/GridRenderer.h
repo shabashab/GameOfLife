@@ -12,13 +12,13 @@ namespace gol
 		public gol::IColoredRenderer
 	{
 	private:
-		int cell_size_;
+		gol::Vector2 cell_size_;
 	private:
 		void draw_vertical_lines(olc::PixelGameEngine& engine) ;
 		void draw_horizontal_lines(olc::PixelGameEngine& engine) ;
 	public:
 		GridRenderer() = default;
-		GridRenderer(int cell_size, gol::Vector2 screen_size, olc::Pixel color);
+		GridRenderer(gol::Vector2 cell_size, gol::Vector2 screen_size, olc::Pixel color);
 		void Render(olc::PixelGameEngine& engine) override;
 	};
 };

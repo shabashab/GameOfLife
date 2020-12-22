@@ -5,7 +5,7 @@
 void gol::GridRenderer::draw_vertical_lines(
 	olc::PixelGameEngine& engine) 
 {
-	for(auto x = 0; x < engine.ScreenWidth(); x += this->cell_size_)
+	for(auto x = 0; x < engine.ScreenWidth(); x += this->cell_size_.x)
 	{
 		VerticalLineRenderer::setXPos(x, engine.ScreenHeight());
 		VerticalLineRenderer::Render(engine);
@@ -15,14 +15,14 @@ void gol::GridRenderer::draw_vertical_lines(
 void gol::GridRenderer::draw_horizontal_lines(
 	olc::PixelGameEngine& engine)	
 {
-	for(auto y = 0; y < engine.ScreenHeight(); y += this->cell_size_)
+	for(auto y = 0; y < engine.ScreenHeight(); y += this->cell_size_.y)
 	{
 		HorizontalLineRenderer::setYPos(y, engine.ScreenWidth());
 		HorizontalLineRenderer::Render(engine);
 	}
 }
 
-gol::GridRenderer::GridRenderer(int cell_size, Vector2 screen_size, olc::Pixel color = olc::GREY) :
+gol::GridRenderer::GridRenderer(gol::Vector2 cell_size, Vector2 screen_size, olc::Pixel color = olc::GREY) :
 	HorizontalLineRenderer(color, screen_size.x),
 	VerticalLineRenderer(color, screen_size.y)
 {

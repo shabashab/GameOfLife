@@ -138,6 +138,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CellMatrix.cpp" />
+    <ClCompile Include="CellMatrixRenderer.cpp" />
     <ClCompile Include="GameOfLife.cpp" />
     <ClCompile Include="GridRenderer.cpp" />
     <ClCompile Include="HorizontalLineRenderer.cpp" />
@@ -146,6 +148,9 @@
     <ClCompile Include="VerticalLineRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="CellMatrix.h" />
+    <ClInclude Include="CellMatrixRenderer.h" />
     <ClInclude Include="GameOfLife.h" />
     <ClInclude Include="GridRenderer.h" />
     <ClInclude Include="HorizontalLineRenderer.h" />

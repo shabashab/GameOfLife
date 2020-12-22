@@ -3,8 +3,9 @@
 
 namespace gol
 {
-	struct LinePosition
+	class LinePosition
 	{
+	public:
 		gol::Vector2 position_1;
 		gol::Vector2 position_2;
 	};
