@@ -1,6 +1,5 @@
 #define OLC_PGE_APPLICATION
 #include "GameOfLife.h"
-#include "VerticalLineRenderer.h"
 
 int main() {
 	GameOfLife gol;
