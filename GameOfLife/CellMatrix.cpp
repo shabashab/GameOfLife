@@ -68,16 +68,9 @@ gol::CellMatrix::cells_positions_vector_t gol::CellMatrix::getAliveCells() const
 
 void gol::CellMatrix::step()
 {
-	double overall_time = 0;
 	
-	auto start_time = std::chrono::steady_clock::now();
 	this->reset_cells_neighbours_count();
-	auto end_time = std::chrono::steady_clock::now();
-	std::chrono::duration<double> time = end_time - start_time;
-	std::cout << "Reset duration: " << time.count() << std::endl;
-	overall_time += time.count();
 
-	start_time = std::chrono::steady_clock::now();
 	for(auto const& value: this->alive_cells_positions_)
 	{
 		for(int x_offset = -1; x_offset <= 1; x_offset++)
@@ -90,14 +83,9 @@ void gol::CellMatrix::step()
 				this->cells_[value.x + x_offset][value.y + y_offset].neighboursCount++;
 			}
 	}
-	end_time = std::chrono::steady_clock::now();
-	time = end_time - start_time;
-	std::cout << "Count duration: " << time.count() << std::endl;
-	overall_time += time.count();
 
 	this->reset_alive_cells_positions_array();
 
-	start_time = std::chrono::steady_clock::now();
 	for(int x = 0; x < width_; x++)
 		for(int y = 0; y < height_; y++)
 		{
@@ -106,11 +94,6 @@ void gol::CellMatrix::step()
 			if(new_state)
 				this->alive_cells_positions_.push_back(gol::Vector2(x, y));
 		}
-	end_time = std::chrono::steady_clock::now();
-	time = end_time - start_time;
-	std::cout << "Cell states duration: " << time.count() << std::endl;
-	overall_time += time.count();
-	std::cout << "Overall time: " << overall_time << std::endl;
 }
 
 size_t gol::CellMatrix::width() const
