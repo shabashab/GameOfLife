@@ -27,13 +27,14 @@ gol::CellMatrix::cells_positions_vector_t  gol::CellMatrix::create_empty_alive_c
 	return cells_positions_vector_t();
 }
 
-bool gol::CellMatrix::get_new_cell_state(Cell& cell)
+gol::CellMatrix::CellMatrix(int width, int height, ICellRulePtr rule_ptr) : cell_rule_(rule_ptr), width_(width), height_(height)
 {
-	if (cell.isAlive && (cell.neighboursCount == 2 || cell.neighboursCount == 3))
-		return true;
-	if (!cell.isAlive && cell.neighboursCount == 3)
-		return true;
-	return false;
+	this->reset();
+}
+
+gol::CellMatrix::~CellMatrix()
+{
+	this->cell_rule_.reset();
 }
 
 void gol::CellMatrix::reset()
@@ -87,7 +88,7 @@ void gol::CellMatrix::step()
 	for(int x = 0; x < width_; x++)
 		for(int y = 0; y < height_; y++)
 		{
-			const bool new_state = this->get_new_cell_state(cells_[x][y]);
+			const bool new_state = this->cell_rule_->getNewCellState(cells_[x][y]);
 			this->cells_[x][y].isAlive = new_state;
 			if(new_state)
 				this->alive_cells_positions_.push_back(gol::Vector2(x, y));
@@ -102,10 +103,4 @@ size_t gol::CellMatrix::width() const
 size_t gol::CellMatrix::height() const
 {
 	return height_;
-}
-
-gol::CellMatrix::CellMatrix(const int width, const int height):
-	width_(width), height_(height)
-{
-	this->reset();
 }

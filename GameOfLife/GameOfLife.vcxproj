@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game\GameOfLifeCellRule.cpp" />
     <ClCompile Include="src\Game\CellMatrix.cpp" />
     <ClCompile Include="src\Graphics\CellMatrixRenderer.cpp" />
     <ClCompile Include="src\Game\GameOfLife.cpp" />
@@ -154,6 +155,8 @@
   <ItemGroup>
     <ClInclude Include="include\Game\Cell.h" />
     <ClInclude Include="include\Game\CellMatrix.h" />
+    <ClInclude Include="include\Game\GameOfLifeCellRule.h" />
+    <ClInclude Include="include\Game\ICellRule.h" />
     <ClInclude Include="include\Graphics\CellMatrixRenderer.h" />
     <ClInclude Include="include\Game\GameOfLife.h" />
     <ClInclude Include="include\Graphics\GridRenderer.h" />

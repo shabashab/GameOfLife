@@ -57,6 +57,9 @@
     <ClCompile Include="src\Graphics\VerticalLineRenderer.cpp">
       <Filter>Source Files\Renderers\LineRenderers</Filter>
     </ClCompile>
+    <ClCompile Include="src\Game\GameOfLifeCellRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Graphics\IRenderer.h">
@@ -93,6 +96,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\GameOfLife.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\ICellRule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\GameOfLifeCellRule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

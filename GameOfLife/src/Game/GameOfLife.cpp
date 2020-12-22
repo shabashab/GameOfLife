@@ -1,8 +1,5 @@
 #include "Game/GameOfLife.h"
-#include <iostream>
-#include <chrono>
-
-
+#include "Game/GameOfLifeCellRule.h"
 
 void GameOfLife::fill_cell_by_cursor_pos(gol::Vector2 cursor_position, bool new_value)
 {
@@ -28,7 +25,7 @@ GameOfLife::GameOfLife()
 bool GameOfLife::OnUserCreate()
 {
 	this->cell_matrix_ = 
-		std::make_shared<gol::CellMatrix>(500, 500);
+		std::make_shared<gol::CellMatrix>(500, 500, GameOfLifeCellRule::getInstance());
 	
 	this->cell_matrix_renderer_ = 
 		std::make_unique<gol::CellMatrixRenderer>(this->cell_matrix_, this->cell_size_, olc::BLACK);
