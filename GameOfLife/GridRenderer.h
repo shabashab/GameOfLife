@@ -9,7 +9,7 @@ namespace gol
 	class GridRenderer final : public gol::IColoredRenderer
 	{
 	private:
-		gol::Vector2 cell_size_;
+		gol::Vector2 cell_size_ {};
 		gol::VerticalLineRenderer v_line_renderer_;
 		gol::HorizontalLineRenderer h_line_renderer_;
 	private:
