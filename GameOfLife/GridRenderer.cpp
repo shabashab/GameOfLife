@@ -7,8 +7,8 @@ void gol::GridRenderer::draw_vertical_lines(
 {
 	for(auto x = 0; x < engine.ScreenWidth(); x += this->cell_size_.x)
 	{
-		VerticalLineRenderer::setXPos(x, engine.ScreenHeight());
-		VerticalLineRenderer::Render(engine);
+		v_line_renderer_.setXPos(x, engine.ScreenHeight());
+		v_line_renderer_.Render(engine);
 	}
 }
 
@@ -17,14 +17,14 @@ void gol::GridRenderer::draw_horizontal_lines(
 {
 	for(auto y = 0; y < engine.ScreenHeight(); y += this->cell_size_.y)
 	{
-		HorizontalLineRenderer::setYPos(y, engine.ScreenWidth());
-		HorizontalLineRenderer::Render(engine);
+		h_line_renderer_.setYPos(y, engine.ScreenWidth());
+		h_line_renderer_.Render(engine);
 	}
 }
 
 gol::GridRenderer::GridRenderer(gol::Vector2 cell_size, Vector2 screen_size, olc::Pixel color = olc::GREY) :
-	HorizontalLineRenderer(color, screen_size.x),
-	VerticalLineRenderer(color, screen_size.y)
+	v_line_renderer_(color, screen_size.y),
+	h_line_renderer_(color, screen_size.x)
 {
 	this->cell_size_ = cell_size;
 }

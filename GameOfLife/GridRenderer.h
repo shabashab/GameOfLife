@@ -6,13 +6,12 @@
 
 namespace gol
 {
-	class GridRenderer :
-		private gol::HorizontalLineRenderer,
-		private gol::VerticalLineRenderer,
-		public gol::IColoredRenderer
+	class GridRenderer final : public gol::IColoredRenderer
 	{
 	private:
 		gol::Vector2 cell_size_;
+		gol::VerticalLineRenderer v_line_renderer_;
+		gol::HorizontalLineRenderer h_line_renderer_;
 	private:
 		void draw_vertical_lines(olc::PixelGameEngine& engine) ;
 		void draw_horizontal_lines(olc::PixelGameEngine& engine) ;
