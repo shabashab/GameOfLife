@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <vector>
-#include <map>
 
 #include "Vector2.h"
 #include "Cell.h"
