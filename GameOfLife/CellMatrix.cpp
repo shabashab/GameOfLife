@@ -1,6 +1,4 @@
 ﻿#include "CellMatrix.h"
-#include <iostream>
-#include <chrono>
 
 void gol::CellMatrix::reset_cells_neighbours_count()
 {
