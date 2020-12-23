@@ -12,8 +12,7 @@ void gol::GridRenderer::draw_vertical_lines(
 void gol::GridRenderer::draw_horizontal_lines(
 	olc::PixelGameEngine& engine) const
 {
-	for(auto y = 0; y < this->grid_size_.y; y += this->cell_size_.y)
-	{
+	for(auto y = 0; y < this->grid_size_.y; y += this->cell_size_.y) {
 		engine.DrawLine(0, y, this->grid_size_.x, y, this->color_);
 	}
 }
