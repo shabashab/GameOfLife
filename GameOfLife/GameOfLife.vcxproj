@@ -147,10 +147,7 @@
     <ClCompile Include="src\Graphics\CellMatrixRenderer.cpp" />
     <ClCompile Include="src\Game\GameOfLife.cpp" />
     <ClCompile Include="src\Graphics\GridRenderer.cpp" />
-    <ClCompile Include="src\Graphics\HorizontalLineRenderer.cpp" />
-    <ClCompile Include="src\Graphics\LineRenderer.cpp" />
     <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Graphics\VerticalLineRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game\Cell.h" />
@@ -160,13 +157,10 @@
     <ClInclude Include="include\Graphics\CellMatrixRenderer.h" />
     <ClInclude Include="include\Game\GameOfLife.h" />
     <ClInclude Include="include\Graphics\GridRenderer.h" />
-    <ClInclude Include="include\Graphics\HorizontalLineRenderer.h" />
     <ClInclude Include="include\Graphics\IColoredRenderer.h" />
     <ClInclude Include="include\Graphics\IRenderer.h" />
     <ClInclude Include="include\Utils\LinePosition.h" />
-    <ClInclude Include="include\Graphics\LineRenderer.h" />
     <ClInclude Include="include\Utils\Vector2.h" />
-    <ClInclude Include="include\Graphics\VerticalLineRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

@@ -18,8 +18,6 @@ gol::Vector2 GameOfLife::get_mouse_position_vector() const
 GameOfLife::GameOfLife()
 {
 	this->cell_size_ = gol::Vector2(20, 20);
-	this->grid_renderer_ = 
-		gol::GridRenderer(this->cell_size_, gol::Vector2(this->ScreenWidth(), this->ScreenHeight()), olc::GREY);
 }
 
 bool GameOfLife::OnUserCreate()
@@ -29,6 +27,12 @@ bool GameOfLife::OnUserCreate()
 	
 	this->cell_matrix_renderer_ = 
 		std::make_unique<gol::CellMatrixRenderer>(this->cell_matrix_, this->cell_size_, olc::BLACK);
+
+	this->grid_renderer_ =
+		std::make_unique<gol::GridRenderer>(
+			this->cell_size_,
+			gol::Vector2(this->ScreenWidth(), this->ScreenHeight()),
+			olc::GREY);
 	
 	return true;
 }
@@ -38,7 +42,7 @@ bool GameOfLife::OnUserUpdate(float fDeltaTime)
 	Clear(olc::WHITE);
 	
 	if(this->render_grid)
-		this->grid_renderer_.Render(*this);
+		this->grid_renderer_->Render(*this);
 
 	if (GetMouse(0).bPressed) {
 		this->fill_cell_by_cursor_pos(this->get_mouse_position_vector(), true);

@@ -12,10 +12,10 @@ private:
 
 	bool render_grid = true;
 
-	std::shared_ptr<gol::CellMatrix> cell_matrix_;
+	std::shared_ptr<gol::CellMatrix>					cell_matrix_;
 	
-	std::unique_ptr<gol::CellMatrixRenderer> cell_matrix_renderer_;
-	gol::GridRenderer grid_renderer_;
+	std::unique_ptr<gol::CellMatrixRenderer>	cell_matrix_renderer_;
+	std::unique_ptr<gol::GridRenderer>				grid_renderer_;
 
 private:
 	void fill_cell_by_cursor_pos(gol::Vector2 cursor_position, bool new_value);
