@@ -5,16 +5,15 @@
 
 namespace gol
 {
-	class CellMatrixRenderer : gol::IRenderer
+	class CellMatrixRenderer : IRenderer
 	{
 	private:
-		std::shared_ptr<gol::CellMatrix> cell_matrix_;
-		gol::Vector2s cell_size_	{};
-		olc::Pixel alive_cell_color_;
+		std::shared_ptr<CellMatrix> _cellMatrix;
+		Vector2s _cellSize{};
+		olc::Pixel _aliveCellColor;
 	public:
-		explicit CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> matrix, gol::Vector2s cell_size,
-		                            olc::Pixel alive_cell_color = olc::BLACK);
-		void Render(olc::PixelGameEngine& engine) override;
+		explicit CellMatrixRenderer(std::shared_ptr<CellMatrix> matrix, Vector2s cellSize,
+		                            olc::Pixel aliveCellColor = olc::BLACK);
+		void render(olc::PixelGameEngine& engine) override;
 	};
 }
-

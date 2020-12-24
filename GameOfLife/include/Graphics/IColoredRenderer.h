@@ -3,11 +3,11 @@
 
 namespace gol
 {
-	class IColoredRenderer : public gol::IRenderer
+	class IColoredRenderer : public IRenderer
 	{
 	protected:
-		olc::Pixel color_;
+		olc::Pixel _color;
 	public:
-		olc::Pixel getColor() const { return this->color_; }
-	};	
+		olc::Pixel getColor() const { return this->_color; }
+	};
 }

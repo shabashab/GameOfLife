@@ -4,18 +4,17 @@
 
 namespace gol
 {
-	class GridRenderer final : public gol::IColoredRenderer
+	class GridRenderer final : public IColoredRenderer
 	{
 	private:
-		gol::Vector2s cell_size_ {};
-		gol::Vector2s grid_size_ {};
+		Vector2s _cellSize{};
+		Vector2s _gridSize{};
 	private:
-		void draw_vertical_lines(olc::PixelGameEngine& engine) const;
-		void draw_horizontal_lines(olc::PixelGameEngine& engine) const;
+		void drawVerticalLines(olc::PixelGameEngine& engine) const;
+		void drawHorizontalLines(olc::PixelGameEngine& engine) const;
 	public:
 		GridRenderer() = default;
-		GridRenderer(gol::Vector2s cell_size, gol::Vector2s grid_size, olc::Pixel color);
-		void Render(olc::PixelGameEngine& engine) override;
+		GridRenderer(Vector2s cellSize, Vector2s gridSize, olc::Pixel color);
+		void render(olc::PixelGameEngine& engine) override;
 	};
-
 };

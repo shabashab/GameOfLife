@@ -12,13 +12,13 @@ private:
 
 	bool _renderGrid = true;
 
-	std::shared_ptr<gol::CellMatrix>					_cellMatrix;
-	
-	std::unique_ptr<gol::CellMatrixRenderer>	_cellMatrixRenderer;
-	std::unique_ptr<gol::GridRenderer>				_gridRenderer;
+	std::shared_ptr<gol::CellMatrix> _cellMatrix;
+
+	std::unique_ptr<gol::CellMatrixRenderer> _cellMatrixRenderer;
+	std::unique_ptr<gol::GridRenderer> _gridRenderer;
 
 private:
-	void fillCellByCursorPos(gol::Vector2s cursor_position, bool newValue);
+	void fillCellByCursorPos(gol::Vector2s cursorPosition, bool newValue);
 	gol::Vector2s getMousePositionVector() const;
 
 public:
@@ -28,4 +28,3 @@ public:
 	bool OnUserCreate() override;
 	bool OnUserUpdate(float fDeltaTime) override;
 };
-

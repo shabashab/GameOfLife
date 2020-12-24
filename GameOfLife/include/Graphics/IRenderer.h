@@ -7,6 +7,6 @@ namespace gol
 	{
 	public:
 		virtual ~IRenderer() = default;
-		virtual void Render(olc::PixelGameEngine& engine) = 0;
+		virtual void render(olc::PixelGameEngine& engine) = 0;
 	};
 }

@@ -1,31 +1,32 @@
 ﻿#include "Graphics/GridRenderer.h"
 
-void gol::GridRenderer::draw_vertical_lines(
+void gol::GridRenderer::drawVerticalLines(
 	olc::PixelGameEngine& engine) const
 {
-	for(auto x = 0; x < this->grid_size_.x; x += this->cell_size_.x)
+	for (auto x = 0; x < this->_gridSize.x; x += this->_cellSize.x)
 	{
-		engine.DrawLine(x, 0, x, this->grid_size_.y, this->color_);
+		engine.DrawLine(x, 0, x, this->_gridSize.y, this->_color);
 	}
 }
 
-void gol::GridRenderer::draw_horizontal_lines(
+void gol::GridRenderer::drawHorizontalLines(
 	olc::PixelGameEngine& engine) const
 {
-	for(auto y = 0; y < this->grid_size_.y; y += this->cell_size_.y) {
-		engine.DrawLine(0, y, this->grid_size_.x, y, this->color_);
+	for (auto y = 0; y < this->_gridSize.y; y += this->_cellSize.y)
+	{
+		engine.DrawLine(0, y, this->_gridSize.x, y, this->_color);
 	}
 }
 
-gol::GridRenderer::GridRenderer(gol::Vector2s cell_size, gol::Vector2s grid_size, olc::Pixel color)
+gol::GridRenderer::GridRenderer(Vector2s cellSize, Vector2s gridSize, olc::Pixel color)
 {
-	this->cell_size_ = cell_size;
-	this->grid_size_ = grid_size;
-	this->color_ = color;
+	this->_cellSize = cellSize;
+	this->_gridSize = gridSize;
+	this->_color = color;
 }
 
-void gol::GridRenderer::Render(olc::PixelGameEngine& engine)
+void gol::GridRenderer::render(olc::PixelGameEngine& engine)
 {
-	this->draw_horizontal_lines(engine);
-	this->draw_vertical_lines(engine);
+	this->drawHorizontalLines(engine);
+	this->drawVerticalLines(engine);
 }

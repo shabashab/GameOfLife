@@ -16,7 +16,7 @@ namespace gol
 		void reset();
 		virtual void setCell(Vector2s position, bool value);
 		virtual Cell getCell(Vector2s position);
-		
+
 		virtual std::vector<Vector2s> getCellsToRenderPositions() const = 0;
 		virtual void step() = 0;
 

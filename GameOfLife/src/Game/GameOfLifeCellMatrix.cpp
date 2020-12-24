@@ -13,15 +13,15 @@ gol::GameOfLifeCellMatrix::GameOfLifeCellMatrix(size_t width, size_t height) : C
 	this->_aliveCellsPositions = CreateAliveCellsPositionsArray(width * height);
 }
 
-void gol::GameOfLifeCellMatrix::setCell(gol::Vector2s position, bool value)
+void gol::GameOfLifeCellMatrix::setCell(Vector2s position, bool value)
 {
 	CellMatrix::setCell(position, value);
-	
-	const auto value_pos = 
+
+	const auto value_pos =
 		std::find(this->_aliveCellsPositions.begin(), this->_aliveCellsPositions.end(), position);
-	const auto exists = 
+	const auto exists =
 		value_pos != this->_aliveCellsPositions.end();
-	
+
 	if (value && !exists)
 		this->_aliveCellsPositions.emplace_back(position);
 	else if (!value && exists)
@@ -76,9 +76,9 @@ void gol::GameOfLifeCellMatrix::applyRule()
 void gol::GameOfLifeCellMatrix::resetCellsNeighboursCount()
 {
 	this->forEach([](size_t, size_t, Cell& cell)
-		{
-			cell.neighboursCount = 0;
-		});
+	{
+		cell.neighboursCount = 0;
+	});
 }
 
 void gol::GameOfLifeCellMatrix::step()

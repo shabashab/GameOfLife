@@ -14,10 +14,9 @@ namespace gol
 		void resetCellsNeighboursCount();
 	public:
 		GameOfLifeCellMatrix(size_t width, size_t height);
-		
+
 		void setCell(Vector2s position, bool value) override;
 		void step() override;
 		std::vector<Vector2s> getCellsToRenderPositions() const override;
 	};
 }
-

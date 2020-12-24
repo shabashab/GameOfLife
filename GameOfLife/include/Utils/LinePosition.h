@@ -6,8 +6,7 @@ namespace gol
 	class LinePosition
 	{
 	public:
-		gol::Vector2i position_1;
-		gol::Vector2i position_2;
+		Vector2i startPosition;
+		Vector2i endPosition;
 	};
 }
-
