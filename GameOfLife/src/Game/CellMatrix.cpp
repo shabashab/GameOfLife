@@ -23,7 +23,7 @@ void gol::CellMatrix::setCell(Vector2s position, const bool value)
 	this->at(position).isAlive = value;
 }
 
-Cell gol::CellMatrix::getCell(Vector2s position)
+gol::Cell gol::CellMatrix::getCell(Vector2s position)
 {
 	return this->at(position);
 }

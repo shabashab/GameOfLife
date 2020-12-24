@@ -1,7 +1,7 @@
 #include "Game/GameOfLife.h"
 #include "Game/GameOfLifeCellMatrix.h"
 
-void GameOfLife::fillCellByCursorPos(const gol::Vector2s cursorPosition, bool newValue)
+void gol::GameOfLife::fillCellByCursorPos(const gol::Vector2s cursorPosition, bool newValue)
 {
 	const gol::Vector2s cell_position(
 		cursorPosition.x / this->_cellSize.x,
@@ -10,17 +10,17 @@ void GameOfLife::fillCellByCursorPos(const gol::Vector2s cursorPosition, bool ne
 	this->_cellMatrix->setCell(cell_position, newValue);
 }
 
-gol::Vector2s GameOfLife::getMousePositionVector() const
+gol::Vector2s gol::GameOfLife::getMousePositionVector() const
 {
 	return {static_cast<size_t>(this->GetMouseX()), static_cast<size_t>(this->GetMouseY())};
 }
 
-GameOfLife::GameOfLife()
+gol::GameOfLife::GameOfLife()
 {
 	this->_cellSize = gol::Vector2s(20, 20);
 }
 
-bool GameOfLife::OnUserCreate()
+bool gol::GameOfLife::OnUserCreate()
 {
 	this->_cellMatrix =
 		std::make_shared<gol::GameOfLifeCellMatrix>(500, 500);
@@ -37,7 +37,7 @@ bool GameOfLife::OnUserCreate()
 	return true;
 }
 
-bool GameOfLife::OnUserUpdate(float fDeltaTime)
+bool gol::GameOfLife::OnUserUpdate(float fDeltaTime)
 {
 	Clear(olc::WHITE);
 

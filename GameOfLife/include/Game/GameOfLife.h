@@ -5,6 +5,9 @@
 #include "Utils/Vector2.h"
 
 
+namespace gol
+{
+	
 class GameOfLife : public olc::PixelGameEngine
 {
 private:
@@ -28,3 +31,5 @@ public:
 	bool OnUserCreate() override;
 	bool OnUserUpdate(float fDeltaTime) override;
 };
+
+}

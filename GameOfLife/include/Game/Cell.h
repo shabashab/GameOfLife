@@ -1,14 +1,17 @@
 ﻿#pragma once
 
-class Cell
+namespace gol
 {
-public:
-	bool isAlive;
-	int neighboursCount;
-
-	Cell()
+	class Cell
 	{
-		isAlive = false;
-		neighboursCount = 0;
-	}
-};
+	public:
+		bool isAlive;
+		int neighboursCount;
+
+		Cell()
+		{
+			isAlive = false;
+			neighboursCount = 0;
+		}
+	};
+}
