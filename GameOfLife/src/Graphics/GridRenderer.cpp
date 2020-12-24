@@ -17,7 +17,7 @@ void gol::GridRenderer::draw_horizontal_lines(
 	}
 }
 
-gol::GridRenderer::GridRenderer(gol::Vector2 cell_size, gol::Vector2 grid_size, olc::Pixel color)
+gol::GridRenderer::GridRenderer(gol::Vector2s cell_size, gol::Vector2s grid_size, olc::Pixel color)
 {
 	this->cell_size_ = cell_size;
 	this->grid_size_ = grid_size;

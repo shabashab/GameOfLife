@@ -1,7 +1,7 @@
 ﻿#include "Graphics/CellMatrixRenderer.h"
 
 
-gol::CellMatrixRenderer::CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> matrix, gol::Vector2 cell_size,
+gol::CellMatrixRenderer::CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> matrix, gol::Vector2s cell_size,
 	olc::Pixel alive_cell_color)
 {
 	this->cell_matrix_ = matrix;
@@ -11,7 +11,7 @@ gol::CellMatrixRenderer::CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> mat
 
 void gol::CellMatrixRenderer::Render(olc::PixelGameEngine& engine)
 {
-	for(auto& value: cell_matrix_->getAliveCells())
+	for(auto& value: cell_matrix_->getCellsToRenderPositions())
 	{
 		engine.FillRect(
 			value.x * this->cell_size_.x, 

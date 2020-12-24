@@ -8,7 +8,7 @@
 class GameOfLife : public olc::PixelGameEngine
 {
 private:
-	gol::Vector2 cell_size_ ;
+	gol::Vector2s cell_size_ ;
 
 	bool render_grid = true;
 
@@ -18,8 +18,8 @@ private:
 	std::unique_ptr<gol::GridRenderer>				grid_renderer_;
 
 private:
-	void fill_cell_by_cursor_pos(gol::Vector2 cursor_position, bool new_value);
-	gol::Vector2 get_mouse_position_vector() const;
+	void fill_cell_by_cursor_pos(gol::Vector2s cursor_position, bool new_value);
+	gol::Vector2s get_mouse_position_vector() const;
 
 public:
 	GameOfLife();

@@ -1,29 +1,30 @@
 #include "Game/GameOfLife.h"
 #include "Game/GameOfLifeCellRule.h"
+#include "Game/GameOfLifeCellMatrix.h"
 
-void GameOfLife::fill_cell_by_cursor_pos(gol::Vector2 cursor_position, bool new_value)
+void GameOfLife::fill_cell_by_cursor_pos(gol::Vector2s cursor_position, bool new_value)
 {
-	const gol::Vector2 cell_position(
+	const gol::Vector2s cell_position(
 		cursor_position.x / this->cell_size_.x,
 		cursor_position.y / this->cell_size_.y
 	);
 	this->cell_matrix_->setCell(cell_position, new_value);
 }
 
-gol::Vector2 GameOfLife::get_mouse_position_vector() const
+gol::Vector2s GameOfLife::get_mouse_position_vector() const
 {
-	return {this->GetMouseX(), this->GetMouseY()};
+	return {static_cast<size_t>(this->GetMouseX()), static_cast<size_t>(this->GetMouseY())};
 }
 
 GameOfLife::GameOfLife()
 {
-	this->cell_size_ = gol::Vector2(20, 20);
+	this->cell_size_ = gol::Vector2s(20, 20);
 }
 
 bool GameOfLife::OnUserCreate()
 {
 	this->cell_matrix_ = 
-		std::make_shared<gol::CellMatrix>(500, 500, GameOfLifeCellRule::getInstance());
+		std::make_shared<gol::GameOfLifeCellMatrix>(500, 500);
 	
 	this->cell_matrix_renderer_ = 
 		std::make_unique<gol::CellMatrixRenderer>(this->cell_matrix_, this->cell_size_, olc::BLACK);
@@ -31,7 +32,7 @@ bool GameOfLife::OnUserCreate()
 	this->grid_renderer_ =
 		std::make_unique<gol::GridRenderer>(
 			this->cell_size_,
-			gol::Vector2(this->ScreenWidth(), this->ScreenHeight()),
+			gol::Vector2s(this->ScreenWidth(), this->ScreenHeight()),
 			olc::GREY);
 	
 	return true;

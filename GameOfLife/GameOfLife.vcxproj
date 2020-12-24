@@ -88,6 +88,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,6 +104,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +122,8 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +141,8 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)Engine\include</AdditionalIncludeDirectories>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game\GameOfLifeCellMatrix.cpp" />
     <ClCompile Include="src\Game\GameOfLifeCellRule.cpp" />
     <ClCompile Include="src\Game\CellMatrix.cpp" />
     <ClCompile Include="src\Graphics\CellMatrixRenderer.cpp" />
@@ -152,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="include\Game\Cell.h" />
     <ClInclude Include="include\Game\CellMatrix.h" />
+    <ClInclude Include="include\Game\GameOfLifeCellMatrix.h" />
     <ClInclude Include="include\Game\GameOfLifeCellRule.h" />
     <ClInclude Include="include\Game\ICellRule.h" />
     <ClInclude Include="include\Graphics\CellMatrixRenderer.h" />
@@ -160,6 +172,7 @@
     <ClInclude Include="include\Graphics\IColoredRenderer.h" />
     <ClInclude Include="include\Graphics\IRenderer.h" />
     <ClInclude Include="include\Utils\LinePosition.h" />
+    <ClInclude Include="include\Utils\Matrix.h" />
     <ClInclude Include="include\Utils\Vector2.h" />
   </ItemGroup>
   <ItemGroup>

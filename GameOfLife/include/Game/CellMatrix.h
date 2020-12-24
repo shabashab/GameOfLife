@@ -2,45 +2,25 @@
 #include <vector>
 
 #include "Utils/Vector2.h"
+#include "Utils/Matrix.h"
 #include "Game/Cell.h"
-#include "Game/ICellRule.h"
-
 
 namespace gol
 {
-	class CellMatrix
+	class CellMatrix : protected Matrix<Cell>
 	{
-	private:
-		typedef std::vector<Cell> cell_vector_t;
-		typedef std::vector<cell_vector_t> cells_matrix_t;
-		typedef std::vector<gol::Vector2> cells_positions_vector_t;
-		
-		cells_matrix_t							cells_;
-		cells_positions_vector_t		alive_cells_positions_;
-		ICellRulePtr								cell_rule_;
-
-		void reset_cells_neighbours_count();
-		void reset_alive_cells_positions_array();
-		void reset_cells_matrix();
-		
-		static cells_matrix_t						create_empty_cells_matrix(size_t width, size_t height);
-		static cells_positions_vector_t create_empty_alive_cells_positions_array();
-	protected:
-		int											width_;
-		int											height_;
 	public:
-		CellMatrix(int width, int height, ICellRulePtr rule_ptr);
-		~CellMatrix();
+		CellMatrix(size_t width, size_t height);
+		virtual ~CellMatrix() = default;
 
 		void reset();
-		void setCell(Vector2 position, bool value);
-		Cell getCell(Vector2 position);
-		cells_positions_vector_t  getAliveCells() const;
-		void step();
+		virtual void setCell(Vector2s position, bool value);
+		virtual Cell getCell(Vector2s position);
 		
-		size_t width() const;
-		size_t height() const;
-		
+		virtual std::vector<Vector2s> getCellsToRenderPositions() const = 0;
+		virtual void step() = 0;
+
+		size_t width() const override;
+		size_t height() const override;
 	};
 }
-

@@ -9,10 +9,10 @@ namespace gol
 	{
 	private:
 		std::shared_ptr<gol::CellMatrix> cell_matrix_;
-		gol::Vector2 cell_size_	{};
+		gol::Vector2s cell_size_	{};
 		olc::Pixel alive_cell_color_;
 	public:
-		explicit CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> matrix, gol::Vector2 cell_size,
+		explicit CellMatrixRenderer(std::shared_ptr<gol::CellMatrix> matrix, gol::Vector2s cell_size,
 		                            olc::Pixel alive_cell_color = olc::BLACK);
 		void Render(olc::PixelGameEngine& engine) override;
 	};
