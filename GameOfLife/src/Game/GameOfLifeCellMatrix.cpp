@@ -1,5 +1,4 @@
 ﻿#include "Game/GameOfLifeCellMatrix.h"
-#include "Game/GameOfLifeCellRule.h"
 
 static std::vector<gol::Vector2s> CreateAliveCellsPositionsArray(size_t reserveSize)
 {

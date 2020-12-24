@@ -8,18 +8,18 @@
 class GameOfLife : public olc::PixelGameEngine
 {
 private:
-	gol::Vector2s cell_size_ ;
+	gol::Vector2s _cellSize;
 
-	bool render_grid = true;
+	bool _renderGrid = true;
 
-	std::shared_ptr<gol::CellMatrix>					cell_matrix_;
+	std::shared_ptr<gol::CellMatrix>					_cellMatrix;
 	
-	std::unique_ptr<gol::CellMatrixRenderer>	cell_matrix_renderer_;
-	std::unique_ptr<gol::GridRenderer>				grid_renderer_;
+	std::unique_ptr<gol::CellMatrixRenderer>	_cellMatrixRenderer;
+	std::unique_ptr<gol::GridRenderer>				_gridRenderer;
 
 private:
-	void fill_cell_by_cursor_pos(gol::Vector2s cursor_position, bool new_value);
-	gol::Vector2s get_mouse_position_vector() const;
+	void fillCellByCursorPos(gol::Vector2s cursor_position, bool newValue);
+	gol::Vector2s getMousePositionVector() const;
 
 public:
 	GameOfLife();

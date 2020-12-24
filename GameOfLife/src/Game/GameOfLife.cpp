@@ -1,37 +1,36 @@
 #include "Game/GameOfLife.h"
-#include "Game/GameOfLifeCellRule.h"
 #include "Game/GameOfLifeCellMatrix.h"
 
-void GameOfLife::fill_cell_by_cursor_pos(gol::Vector2s cursor_position, bool new_value)
+void GameOfLife::fillCellByCursorPos(gol::Vector2s cursor_position, bool newValue)
 {
 	const gol::Vector2s cell_position(
-		cursor_position.x / this->cell_size_.x,
-		cursor_position.y / this->cell_size_.y
+		cursor_position.x / this->_cellSize.x,
+		cursor_position.y / this->_cellSize.y
 	);
-	this->cell_matrix_->setCell(cell_position, new_value);
+	this->_cellMatrix->setCell(cell_position, newValue);
 }
 
-gol::Vector2s GameOfLife::get_mouse_position_vector() const
+gol::Vector2s GameOfLife::getMousePositionVector() const
 {
 	return {static_cast<size_t>(this->GetMouseX()), static_cast<size_t>(this->GetMouseY())};
 }
 
 GameOfLife::GameOfLife()
 {
-	this->cell_size_ = gol::Vector2s(20, 20);
+	this->_cellSize = gol::Vector2s(20, 20);
 }
 
 bool GameOfLife::OnUserCreate()
 {
-	this->cell_matrix_ = 
+	this->_cellMatrix = 
 		std::make_shared<gol::GameOfLifeCellMatrix>(500, 500);
 	
-	this->cell_matrix_renderer_ = 
-		std::make_unique<gol::CellMatrixRenderer>(this->cell_matrix_, this->cell_size_, olc::BLACK);
+	this->_cellMatrixRenderer = 
+		std::make_unique<gol::CellMatrixRenderer>(this->_cellMatrix, this->_cellSize, olc::BLACK);
 
-	this->grid_renderer_ =
+	this->_gridRenderer =
 		std::make_unique<gol::GridRenderer>(
-			this->cell_size_,
+			this->_cellSize,
 			gol::Vector2s(this->ScreenWidth(), this->ScreenHeight()),
 			olc::GREY);
 	
@@ -42,31 +41,31 @@ bool GameOfLife::OnUserUpdate(float fDeltaTime)
 {
 	Clear(olc::WHITE);
 	
-	if(this->render_grid)
-		this->grid_renderer_->Render(*this);
+	if(this->_renderGrid)
+		this->_gridRenderer->Render(*this);
 
 	if (GetMouse(0).bPressed) {
-		this->fill_cell_by_cursor_pos(this->get_mouse_position_vector(), true);
+		this->fillCellByCursorPos(this->getMousePositionVector(), true);
 	}
 	
 	if (GetMouse(1).bPressed) {
-		this->fill_cell_by_cursor_pos(this->get_mouse_position_vector(), false);
+		this->fillCellByCursorPos(this->getMousePositionVector(), false);
 	}
 
 	if (GetKey(olc::RIGHT).bHeld) {
-		cell_matrix_->step();
+		_cellMatrix->step();
 	}
 
 	if (GetKey(olc::A).bPressed)
 	{
-		this->render_grid = !this->render_grid;
+		this->_renderGrid = !this->_renderGrid;
 	}
 
 	if (GetKey(olc::C).bPressed) {
-		cell_matrix_->reset();
+		_cellMatrix->reset();
 	}
 
-	this->cell_matrix_renderer_->Render(*this);
+	this->_cellMatrixRenderer->Render(*this);
 
 	return true;
 }

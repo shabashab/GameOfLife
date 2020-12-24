@@ -48,9 +48,6 @@
     <ClCompile Include="src\Graphics\GridRenderer.cpp">
       <Filter>Source Files\Renderers</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\GameOfLifeCellRule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\GameOfLifeCellMatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -78,12 +75,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\GameOfLife.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Game\ICellRule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Game\GameOfLifeCellRule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Utils\Matrix.h">
