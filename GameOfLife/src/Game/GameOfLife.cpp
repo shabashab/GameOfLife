@@ -1,9 +1,9 @@
 #include "Game/GameOfLife.h"
 #include "Game/GameOfLifeCellMatrix.h"
 
-void gol::GameOfLife::fillCellByCursorPos(const gol::Vector2s cursorPosition, bool newValue)
+void gol::GameOfLife::fillCellByCursorPos(const Vector2s cursorPosition, bool newValue)
 {
-	const gol::Vector2s cell_position(
+	const Vector2s cell_position(
 		cursorPosition.x / this->_cellSize.x,
 		cursorPosition.y / this->_cellSize.y
 	);
@@ -17,21 +17,21 @@ gol::Vector2s gol::GameOfLife::getMousePositionVector() const
 
 gol::GameOfLife::GameOfLife()
 {
-	this->_cellSize = gol::Vector2s(20, 20);
+	this->_cellSize = Vector2s(20, 20);
 }
 
 bool gol::GameOfLife::OnUserCreate()
 {
 	this->_cellMatrix =
-		std::make_shared<gol::GameOfLifeCellMatrix>(500, 500);
+		std::make_shared<GameOfLifeCellMatrix>(500, 500);
 
 	this->_cellMatrixRenderer =
-		std::make_unique<gol::CellMatrixRenderer>(this->_cellMatrix, this->_cellSize, olc::BLACK);
+		std::make_unique<CellMatrixRenderer>(this->_cellMatrix, this->_cellSize, olc::BLACK);
 
 	this->_gridRenderer =
-		std::make_unique<gol::GridRenderer>(
+		std::make_unique<GridRenderer>(
 			this->_cellSize,
-			gol::Vector2s(this->ScreenWidth(), this->ScreenHeight()),
+			Vector2s(this->ScreenWidth(), this->ScreenHeight()),
 			olc::GREY);
 
 	return true;

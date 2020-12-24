@@ -7,29 +7,27 @@
 
 namespace gol
 {
-	
-class GameOfLife : public olc::PixelGameEngine
-{
-private:
-	gol::Vector2s _cellSize;
+	class GameOfLife : public olc::PixelGameEngine
+	{
+	private:
+		Vector2s _cellSize;
 
-	bool _renderGrid = true;
+		bool _renderGrid = true;
 
-	std::shared_ptr<gol::CellMatrix> _cellMatrix;
+		std::shared_ptr<CellMatrix> _cellMatrix;
 
-	std::unique_ptr<gol::CellMatrixRenderer> _cellMatrixRenderer;
-	std::unique_ptr<gol::GridRenderer> _gridRenderer;
+		std::unique_ptr<CellMatrixRenderer> _cellMatrixRenderer;
+		std::unique_ptr<GridRenderer> _gridRenderer;
 
-private:
-	void fillCellByCursorPos(gol::Vector2s cursorPosition, bool newValue);
-	gol::Vector2s getMousePositionVector() const;
+	private:
+		void fillCellByCursorPos(Vector2s cursorPosition, bool newValue);
+		Vector2s getMousePositionVector() const;
 
-public:
-	GameOfLife();
+	public:
+		GameOfLife();
 
-public:
-	bool OnUserCreate() override;
-	bool OnUserUpdate(float fDeltaTime) override;
-};
-
+	public:
+		bool OnUserCreate() override;
+		bool OnUserUpdate(float fDeltaTime) override;
+	};
 }
