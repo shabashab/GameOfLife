@@ -7,11 +7,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameOfLife", "GameOfLife\Ga
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{14793960-8330-4211-AD65-F6738A62FFBC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameBase", "Game\Game.vcxproj", "{DBBA961A-2430-47D6-8D7B-C6414EA4CB0D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{DBBA961A-2430-47D6-8D7B-C6414EA4CB0D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utils", "Utils\Utils.vcxproj", "{9D697B98-10DF-4EA7-A88D-9B3707631776}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics", "Graphics\Graphics.vcxproj", "{AC4196B7-BE11-4799-B8CC-B8CFB9EC2643}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{A45F9764-02CD-43C6-84C2-8EF04E5EEC9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14793960-8330-4211-AD65-F6738A62FFBC} = {A45F9764-02CD-43C6-84C2-8EF04E5EEC9B}
+		{DBBA961A-2430-47D6-8D7B-C6414EA4CB0D} = {A45F9764-02CD-43C6-84C2-8EF04E5EEC9B}
+		{9D697B98-10DF-4EA7-A88D-9B3707631776} = {A45F9764-02CD-43C6-84C2-8EF04E5EEC9B}
+		{AC4196B7-BE11-4799-B8CC-B8CFB9EC2643} = {A45F9764-02CD-43C6-84C2-8EF04E5EEC9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D86E6D59-A7EB-4A88-AEE5-FE3FFB26CD2A}

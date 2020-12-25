@@ -16,7 +16,7 @@ namespace gol
 		bool _isPlaying = false;
 
 		float _playingTime = 0.f;
-		
+
 		std::shared_ptr<CellMatrix> _cellMatrix;
 
 		std::unique_ptr<CellMatrixRenderer> _cellMatrixRenderer;

@@ -17,7 +17,6 @@ gol::Vector2s gol::GameOfLife::getMousePositionVector() const
 
 gol::GameOfLife::GameOfLife() : _cellSize(20, 20)
 {
-	
 }
 
 bool gol::GameOfLife::OnUserCreate()
@@ -44,16 +43,17 @@ bool gol::GameOfLife::OnUserUpdate(float fDeltaTime)
 	if (this->_renderGrid)
 		this->_gridRenderer->render(*this);
 
-	if(this->_isPlaying)
+	if (this->_isPlaying)
 	{
 		_playingTime += fDeltaTime;
-		
-		if(_playingTime > 0.5f)
+
+		if (_playingTime > 0.5f)
 		{
 			this->_cellMatrix->step();
 			_playingTime = 0;
 		}
-	} else
+	}
+	else
 	{
 		if (GetMouse(0).bPressed)
 			this->fillCellByCursorPos(this->getMousePositionVector(), true);
@@ -67,13 +67,13 @@ bool gol::GameOfLife::OnUserUpdate(float fDeltaTime)
 		if (GetKey(olc::C).bPressed)
 			_cellMatrix->reset();
 	}
-	
+
 	if (GetKey(olc::A).bPressed)
 		this->_renderGrid = !this->_renderGrid;
 
 	if (GetKey(olc::SPACE).bPressed)
 		this->_isPlaying = !this->_isPlaying;
-		
+
 	this->_cellMatrixRenderer->render(*this);
 
 	return true;

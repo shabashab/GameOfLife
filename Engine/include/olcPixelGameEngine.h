@@ -289,7 +289,7 @@ int main()
 #endif
 
 #if defined(USE_EXPERIMENTAL_FS) || defined(FORCE_EXPERIMENTAL_FS)
-	// C++14
+// C++14
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #include <experimental/filesystem>
 namespace _gfs = std::experimental::filesystem::v1;
@@ -397,9 +397,10 @@ namespace olc
 	class Sprite;
 
 	// Pixel Game Engine Advanced Configuration
-	constexpr uint8_t  nMouseButtons = 5;
-	constexpr uint8_t  nDefaultAlpha = 0xFF;
+	constexpr uint8_t nMouseButtons = 5;
+	constexpr uint8_t nDefaultAlpha = 0xFF;
 	constexpr uint32_t nDefaultPixel = (nDefaultAlpha << 24);
+
 	enum rcode { FAIL = 0, OK = 1, NO_FILE = -1 };
 
 	// O------------------------------------------------------------------------------O
@@ -410,7 +411,14 @@ namespace olc
 		union
 		{
 			uint32_t n = nDefaultPixel;
-			struct { uint8_t r; uint8_t g; uint8_t b; uint8_t a; };
+
+			struct
+			{
+				uint8_t r;
+				uint8_t g;
+				uint8_t b;
+				uint8_t a;
+			};
 		};
 
 		enum Mode { NORMAL, MASK, ALPHA, CUSTOM };
@@ -418,22 +426,22 @@ namespace olc
 		Pixel();
 		Pixel(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = nDefaultAlpha);
 		Pixel(uint32_t p);
-		Pixel& operator = (const Pixel& v) = default;
-		bool   operator ==(const Pixel& p) const;
-		bool   operator !=(const Pixel& p) const;
-		Pixel  operator * (const float i) const;
-		Pixel  operator / (const float i) const;
-		Pixel& operator *=(const float i);
-		Pixel& operator /=(const float i);
-		Pixel  operator + (const Pixel& p) const;
-		Pixel  operator - (const Pixel& p) const;
+		Pixel& operator =(const Pixel& v) = default;
+		bool operator ==(const Pixel& p) const;
+		bool operator !=(const Pixel& p) const;
+		Pixel operator *(float i) const;
+		Pixel operator /(float i) const;
+		Pixel& operator *=(float i);
+		Pixel& operator /=(float i);
+		Pixel operator +(const Pixel& p) const;
+		Pixel operator -(const Pixel& p) const;
 		Pixel& operator +=(const Pixel& p);
 		Pixel& operator -=(const Pixel& p);
-		Pixel  inv() const;
+		Pixel inv() const;
 	};
 
 	Pixel PixelF(float red, float green, float blue, float alpha = 1.0f);
-	Pixel PixelLerp(const olc::Pixel& p1, const olc::Pixel& p2, float t);
+	Pixel PixelLerp(const Pixel& p1, const Pixel& p2, float t);
 
 	// O------------------------------------------------------------------------------O
 	// | USEFUL CONSTANTS                                                             |
@@ -453,17 +461,103 @@ namespace olc
 	enum Key
 	{
 		NONE,
-		A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
-		K0, K1, K2, K3, K4, K5, K6, K7, K8, K9,
-		F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
-		UP, DOWN, LEFT, RIGHT,
-		SPACE, TAB, SHIFT, CTRL, INS, DEL, HOME, END, PGUP, PGDN,
-		BACK, ESCAPE, RETURN, ENTER, PAUSE, SCROLL,
-		NP0, NP1, NP2, NP3, NP4, NP5, NP6, NP7, NP8, NP9,
-		NP_MUL, NP_DIV, NP_ADD, NP_SUB, NP_DECIMAL, PERIOD,
-		EQUALS, COMMA, MINUS,
-		OEM_1, OEM_2, OEM_3, OEM_4, OEM_5, OEM_6, OEM_7, OEM_8,
-		CAPS_LOCK, ENUM_END
+		A,
+		B,
+		C,
+		D,
+		E,
+		F,
+		G,
+		H,
+		I,
+		J,
+		K,
+		L,
+		M,
+		N,
+		O,
+		P,
+		Q,
+		R,
+		S,
+		T,
+		U,
+		V,
+		W,
+		X,
+		Y,
+		Z,
+		K0,
+		K1,
+		K2,
+		K3,
+		K4,
+		K5,
+		K6,
+		K7,
+		K8,
+		K9,
+		F1,
+		F2,
+		F3,
+		F4,
+		F5,
+		F6,
+		F7,
+		F8,
+		F9,
+		F10,
+		F11,
+		F12,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT,
+		SPACE,
+		TAB,
+		SHIFT,
+		CTRL,
+		INS,
+		DEL,
+		HOME,
+		END,
+		PGUP,
+		PGDN,
+		BACK,
+		ESCAPE,
+		RETURN,
+		ENTER,
+		PAUSE,
+		SCROLL,
+		NP0,
+		NP1,
+		NP2,
+		NP3,
+		NP4,
+		NP5,
+		NP6,
+		NP7,
+		NP8,
+		NP9,
+		NP_MUL,
+		NP_DIV,
+		NP_ADD,
+		NP_SUB,
+		NP_DECIMAL,
+		PERIOD,
+		EQUALS,
+		COMMA,
+		MINUS,
+		OEM_1,
+		OEM_2,
+		OEM_3,
+		OEM_4,
+		OEM_5,
+		OEM_6,
+		OEM_7,
+		OEM_8,
+		CAPS_LOCK,
+		ENUM_END
 	};
 
 	// O------------------------------------------------------------------------------O
@@ -475,62 +569,128 @@ namespace olc
 	{
 		T x = 0;
 		T y = 0;
-		v2d_generic() : x(0), y(0) {}
-		v2d_generic(T _x, T _y) : x(_x), y(_y) {}
-		v2d_generic(const v2d_generic& v) : x(v.x), y(v.y) {}
+
+		v2d_generic() : x(0), y(0)
+		{
+		}
+
+		v2d_generic(T _x, T _y) : x(_x), y(_y)
+		{
+		}
+
+		v2d_generic(const v2d_generic& v) : x(v.x), y(v.y)
+		{
+		}
+
 		v2d_generic& operator=(const v2d_generic& v) = default;
 		T mag() const { return T(std::sqrt(x * x + y * y)); }
 		T mag2() const { return x * x + y * y; }
-		v2d_generic  norm() const { T r = 1 / mag(); return v2d_generic(x * r, y * r); }
-		v2d_generic  perp() const { return v2d_generic(-y, x); }
+
+		v2d_generic norm() const
+		{
+			T r = 1 / mag();
+			return v2d_generic(x * r, y * r);
+		}
+
+		v2d_generic perp() const { return v2d_generic(-y, x); }
 		T dot(const v2d_generic& rhs) const { return this->x * rhs.x + this->y * rhs.y; }
 		T cross(const v2d_generic& rhs) const { return this->x * rhs.y - this->y * rhs.x; }
-		v2d_generic  operator +  (const v2d_generic& rhs) const { return v2d_generic(this->x + rhs.x, this->y + rhs.y); }
-		v2d_generic  operator -  (const v2d_generic& rhs) const { return v2d_generic(this->x - rhs.x, this->y - rhs.y); }
-		v2d_generic  operator *  (const T& rhs)           const { return v2d_generic(this->x * rhs, this->y * rhs); }
-		v2d_generic  operator *  (const v2d_generic& rhs) const { return v2d_generic(this->x * rhs.x, this->y * rhs.y); }
-		v2d_generic  operator /  (const T& rhs)           const { return v2d_generic(this->x / rhs, this->y / rhs); }
-		v2d_generic  operator /  (const v2d_generic& rhs) const { return v2d_generic(this->x / rhs.x, this->y / rhs.y); }
-		v2d_generic& operator += (const v2d_generic& rhs) { this->x += rhs.x; this->y += rhs.y; return *this; }
-		v2d_generic& operator -= (const v2d_generic& rhs) { this->x -= rhs.x; this->y -= rhs.y; return *this; }
-		v2d_generic& operator *= (const T& rhs) { this->x *= rhs; this->y *= rhs; return *this; }
-		v2d_generic& operator /= (const T& rhs) { this->x /= rhs; this->y /= rhs; return *this; }
-		v2d_generic  operator +  () const { return { +x, +y }; }
-		v2d_generic  operator -  () const { return { -x, -y }; }
-		bool operator == (const v2d_generic& rhs) const { return (this->x == rhs.x && this->y == rhs.y); }
-		bool operator != (const v2d_generic& rhs) const { return (this->x != rhs.x || this->y != rhs.y); }
-		const std::string str() const { return std::string("(") + std::to_string(this->x) + "," + std::to_string(this->y) + ")"; }
-		friend std::ostream& operator << (std::ostream& os, const v2d_generic& rhs) { os << rhs.str(); return os; }
-		operator v2d_generic<int32_t>() const { return { static_cast<int32_t>(this->x), static_cast<int32_t>(this->y) }; }
-		operator v2d_generic<float>() const { return { static_cast<float>(this->x), static_cast<float>(this->y) }; }
-		operator v2d_generic<double>() const { return { static_cast<double>(this->x), static_cast<double>(this->y) }; }
+		v2d_generic operator +(const v2d_generic& rhs) const { return v2d_generic(this->x + rhs.x, this->y + rhs.y); }
+		v2d_generic operator -(const v2d_generic& rhs) const { return v2d_generic(this->x - rhs.x, this->y - rhs.y); }
+		v2d_generic operator *(const T& rhs) const { return v2d_generic(this->x * rhs, this->y * rhs); }
+		v2d_generic operator *(const v2d_generic& rhs) const { return v2d_generic(this->x * rhs.x, this->y * rhs.y); }
+		v2d_generic operator /(const T& rhs) const { return v2d_generic(this->x / rhs, this->y / rhs); }
+		v2d_generic operator /(const v2d_generic& rhs) const { return v2d_generic(this->x / rhs.x, this->y / rhs.y); }
+
+		v2d_generic& operator +=(const v2d_generic& rhs)
+		{
+			this->x += rhs.x;
+			this->y += rhs.y;
+			return *this;
+		}
+
+		v2d_generic& operator -=(const v2d_generic& rhs)
+		{
+			this->x -= rhs.x;
+			this->y -= rhs.y;
+			return *this;
+		}
+
+		v2d_generic& operator *=(const T& rhs)
+		{
+			this->x *= rhs;
+			this->y *= rhs;
+			return *this;
+		}
+
+		v2d_generic& operator /=(const T& rhs)
+		{
+			this->x /= rhs;
+			this->y /= rhs;
+			return *this;
+		}
+
+		v2d_generic operator +() const { return {+x, +y}; }
+		v2d_generic operator -() const { return {-x, -y}; }
+		bool operator ==(const v2d_generic& rhs) const { return (this->x == rhs.x && this->y == rhs.y); }
+		bool operator !=(const v2d_generic& rhs) const { return (this->x != rhs.x || this->y != rhs.y); }
+
+		const std::string str() const
+		{
+			return std::string("(") + std::to_string(this->x) + "," + std::to_string(this->y) + ")";
+		}
+
+		friend std::ostream& operator <<(std::ostream& os, const v2d_generic& rhs)
+		{
+			os << rhs.str();
+			return os;
+		}
+
+		operator v2d_generic<int32_t>() const { return {static_cast<int32_t>(this->x), static_cast<int32_t>(this->y)}; }
+		operator v2d_generic<float>() const { return {static_cast<float>(this->x), static_cast<float>(this->y)}; }
+		operator v2d_generic<double>() const { return {static_cast<double>(this->x), static_cast<double>(this->y)}; }
 	};
 
 	// Note: joshinils has some good suggestions here, but they are complicated to implement at this moment,
 	// however they will appear in a future version of PGE
-	template<class T> inline v2d_generic<T> operator * (const float& lhs, const v2d_generic<T>& rhs)
+	template <class T>
+	v2d_generic<T> operator *(const float& lhs, const v2d_generic<T>& rhs)
 	{
-		return v2d_generic<T>((T)(lhs * (float)rhs.x), (T)(lhs * (float)rhs.y));
+		return v2d_generic<T>(static_cast<T>(lhs * static_cast<float>(rhs.x)),
+		                      static_cast<T>(lhs * static_cast<float>(rhs.y)));
 	}
-	template<class T> inline v2d_generic<T> operator * (const double& lhs, const v2d_generic<T>& rhs)
+
+	template <class T>
+	v2d_generic<T> operator *(const double& lhs, const v2d_generic<T>& rhs)
 	{
-		return v2d_generic<T>((T)(lhs * (double)rhs.x), (T)(lhs * (double)rhs.y));
+		return v2d_generic<T>(static_cast<T>(lhs * static_cast<double>(rhs.x)),
+		                      static_cast<T>(lhs * static_cast<double>(rhs.y)));
 	}
-	template<class T> inline v2d_generic<T> operator * (const int& lhs, const v2d_generic<T>& rhs)
+
+	template <class T>
+	v2d_generic<T> operator *(const int& lhs, const v2d_generic<T>& rhs)
 	{
-		return v2d_generic<T>((T)(lhs * (int)rhs.x), (T)(lhs * (int)rhs.y));
+		return v2d_generic<T>(static_cast<T>(lhs * static_cast<int>(rhs.x)), static_cast<T>(lhs * static_cast<int>(rhs.y)));
 	}
-	template<class T> inline v2d_generic<T> operator / (const float& lhs, const v2d_generic<T>& rhs)
+
+	template <class T>
+	v2d_generic<T> operator /(const float& lhs, const v2d_generic<T>& rhs)
 	{
-		return v2d_generic<T>((T)(lhs / (float)rhs.x), (T)(lhs / (float)rhs.y));
+		return v2d_generic<T>(static_cast<T>(lhs / static_cast<float>(rhs.x)),
+		                      static_cast<T>(lhs / static_cast<float>(rhs.y)));
 	}
-	template<class T> inline v2d_generic<T> operator / (const double& lhs, const v2d_generic<T>& rhs)
+
+	template <class T>
+	v2d_generic<T> operator /(const double& lhs, const v2d_generic<T>& rhs)
 	{
-		return v2d_generic<T>((T)(lhs / (double)rhs.x), (T)(lhs / (double)rhs.y));
+		return v2d_generic<T>(static_cast<T>(lhs / static_cast<double>(rhs.x)),
+		                      static_cast<T>(lhs / static_cast<double>(rhs.y)));
 	}
-	template<class T> inline v2d_generic<T> operator / (const int& lhs, const v2d_generic<T>& rhs)
+
+	template <class T>
+	v2d_generic<T> operator /(const int& lhs, const v2d_generic<T>& rhs)
 	{
-		return v2d_generic<T>((T)(lhs / (int)rhs.x), (T)(lhs / (int)rhs.y));
+		return v2d_generic<T>(static_cast<T>(lhs / static_cast<int>(rhs.x)), static_cast<T>(lhs / static_cast<int>(rhs.y)));
 	}
 
 	typedef v2d_generic<int32_t> vi2d;
@@ -544,9 +704,9 @@ namespace olc
 	// O------------------------------------------------------------------------------O
 	struct HWButton
 	{
-		bool bPressed = false;	// Set once during the frame the event occurs
-		bool bReleased = false;	// Set once during the frame the event occurs
-		bool bHeld = false;		// Set true for all frames between pressed and released events
+		bool bPressed = false; // Set once during the frame the event occurs
+		bool bReleased = false; // Set once during the frame the event occurs
+		bool bHeld = false; // Set true for all frames between pressed and released events
 	};
 
 	// O------------------------------------------------------------------------------O
@@ -569,7 +729,12 @@ namespace olc
 		ResourceBuffer GetFileBuffer(const std::string& sFile);
 		bool Loaded();
 	private:
-		struct sResourceFile { uint32_t nSize; uint32_t nOffset; };
+		struct sResourceFile
+		{
+			uint32_t nSize;
+			uint32_t nOffset;
+		};
+
 		std::map<std::string, sResourceFile> mapFiles;
 		std::ifstream baseFile;
 		std::vector<char> scramble(const std::vector<char>& data, const std::string& key);
@@ -581,8 +746,8 @@ namespace olc
 	public:
 		ImageLoader() = default;
 		virtual ~ImageLoader() = default;
-		virtual olc::rcode LoadImageResource(olc::Sprite* spr, const std::string& sImageFile, olc::ResourcePack* pack) = 0;
-		virtual olc::rcode SaveImageResource(olc::Sprite* spr, const std::string& sImageFile) = 0;
+		virtual rcode LoadImageResource(Sprite* spr, const std::string& sImageFile, ResourcePack* pack) = 0;
+		virtual rcode SaveImageResource(Sprite* spr, const std::string& sImageFile) = 0;
 	};
 
 	// O------------------------------------------------------------------------------O
@@ -592,37 +757,39 @@ namespace olc
 	{
 	public:
 		Sprite();
-		Sprite(const std::string& sImageFile, olc::ResourcePack* pack = nullptr);
+		Sprite(const std::string& sImageFile, ResourcePack* pack = nullptr);
 		Sprite(int32_t w, int32_t h);
-		Sprite(const olc::Sprite&) = delete;
+		Sprite(const Sprite&) = delete;
 		~Sprite();
 
 	public:
-		olc::rcode LoadFromFile(const std::string& sImageFile, olc::ResourcePack* pack = nullptr);
-		olc::rcode LoadFromPGESprFile(const std::string& sImageFile, olc::ResourcePack* pack = nullptr);
-		olc::rcode SaveToPGESprFile(const std::string& sImageFile);
+		rcode LoadFromFile(const std::string& sImageFile, ResourcePack* pack = nullptr);
+		rcode LoadFromPGESprFile(const std::string& sImageFile, ResourcePack* pack = nullptr);
+		rcode SaveToPGESprFile(const std::string& sImageFile);
 
 	public:
 		int32_t width = 0;
 		int32_t height = 0;
+
 		enum Mode { NORMAL, PERIODIC };
+
 		enum Flip { NONE = 0, HORIZ = 1, VERT = 2 };
 
 	public:
-		void SetSampleMode(olc::Sprite::Mode mode = olc::Sprite::Mode::NORMAL);
+		void SetSampleMode(Mode mode = NORMAL);
 		Pixel GetPixel(int32_t x, int32_t y) const;
-		bool  SetPixel(int32_t x, int32_t y, Pixel p);
-		Pixel GetPixel(const olc::vi2d& a) const;
-		bool  SetPixel(const olc::vi2d& a, Pixel p);
+		bool SetPixel(int32_t x, int32_t y, Pixel p);
+		Pixel GetPixel(const vi2d& a) const;
+		bool SetPixel(const vi2d& a, Pixel p);
 		Pixel Sample(float x, float y) const;
 		Pixel SampleBL(float u, float v) const;
 		Pixel* GetData();
-		olc::Sprite* Duplicate();
-		olc::Sprite* Duplicate(const olc::vi2d& vPos, const olc::vi2d& vSize);
+		Sprite* Duplicate();
+		Sprite* Duplicate(const vi2d& vPos, const vi2d& vSize);
 		Pixel* pColData = nullptr;
-		Mode modeSample = Mode::NORMAL;
+		Mode modeSample = NORMAL;
 
-		static std::unique_ptr<olc::ImageLoader> loader;
+		static std::unique_ptr<ImageLoader> loader;
 	};
 
 	// O------------------------------------------------------------------------------O
@@ -631,14 +798,14 @@ namespace olc
 	class Decal
 	{
 	public:
-		Decal(olc::Sprite* spr, bool filter = false);
+		Decal(Sprite* spr, bool filter = false);
 		virtual ~Decal();
 		void Update();
 
 	public: // But dont touch
 		int32_t id = -1;
-		olc::Sprite* sprite = nullptr;
-		olc::vf2d vUVScale = { 1.0f, 1.0f };
+		Sprite* sprite = nullptr;
+		vf2d vUVScale = {1.0f, 1.0f};
 	};
 
 	enum class DecalMode
@@ -657,10 +824,10 @@ namespace olc
 	{
 	public:
 		Renderable() = default;
-		olc::rcode Load(const std::string& sFile, ResourcePack* pack = nullptr, bool filter = false);
+		rcode Load(const std::string& sFile, ResourcePack* pack = nullptr, bool filter = false);
 		void Create(uint32_t width, uint32_t height, bool filter = false);
-		olc::Decal* Decal() const;
-		olc::Sprite* Sprite() const;
+		Decal* Decal() const;
+		Sprite* Sprite() const;
 
 	private:
 		std::unique_ptr<olc::Sprite> pSprite = nullptr;
@@ -673,32 +840,32 @@ namespace olc
 
 	struct DecalInstance
 	{
-		olc::Decal* decal = nullptr;
-		olc::vf2d pos[4] = { { 0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f} };
-		olc::vf2d uv[4] = { { 0.0f, 0.0f}, {0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f} };
-		float w[4] = { 1, 1, 1, 1 };
-		olc::Pixel tint[4] = { olc::WHITE, olc::WHITE, olc::WHITE, olc::WHITE };
-		olc::DecalMode mode = olc::DecalMode::NORMAL;
+		Decal* decal = nullptr;
+		vf2d pos[4] = {{0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f}};
+		vf2d uv[4] = {{0.0f, 0.0f}, {0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f}};
+		float w[4] = {1, 1, 1, 1};
+		Pixel tint[4] = {WHITE, WHITE, WHITE, WHITE};
+		DecalMode mode = DecalMode::NORMAL;
 	};
 
 	struct DecalTriangleInstance
 	{
-		olc::vf2d points[3];
-		olc::vf2d texture[3];
-		olc::Pixel colours[3];
-		olc::Decal* decal = nullptr;
+		vf2d points[3];
+		vf2d texture[3];
+		Pixel colours[3];
+		Decal* decal = nullptr;
 	};
 
 	struct LayerDesc
 	{
-		olc::vf2d vOffset = { 0, 0 };
-		olc::vf2d vScale = { 1, 1 };
+		vf2d vOffset = {0, 0};
+		vf2d vScale = {1, 1};
 		bool bShow = false;
 		bool bUpdate = false;
-		olc::Sprite* pDrawTarget = nullptr;
+		Sprite* pDrawTarget = nullptr;
 		uint32_t nResID = 0;
 		std::vector<DecalInstance> vecDecalInstance;
-		olc::Pixel tint = olc::WHITE;
+		Pixel tint = WHITE;
 		std::function<void()> funcHook = nullptr;
 	};
 
@@ -706,37 +873,37 @@ namespace olc
 	{
 	public:
 		virtual ~Renderer() = default;
-		virtual void       PrepareDevice() = 0;
-		virtual olc::rcode CreateDevice(std::vector<void*> params, bool bFullScreen, bool bVSYNC) = 0;
-		virtual olc::rcode DestroyDevice() = 0;
-		virtual void       DisplayFrame() = 0;
-		virtual void       PrepareDrawing() = 0;
-		virtual void	   SetDecalMode(const olc::DecalMode& mode) = 0;
-		virtual void       DrawLayerQuad(const olc::vf2d& offset, const olc::vf2d& scale, const olc::Pixel tint) = 0;
-		virtual void       DrawDecalQuad(const olc::DecalInstance& decal) = 0;
-		virtual uint32_t   CreateTexture(const uint32_t width, const uint32_t height, const bool filtered = false) = 0;
-		virtual void       UpdateTexture(uint32_t id, olc::Sprite* spr) = 0;
-		virtual uint32_t   DeleteTexture(const uint32_t id) = 0;
-		virtual void       ApplyTexture(uint32_t id) = 0;
-		virtual void       UpdateViewport(const olc::vi2d& pos, const olc::vi2d& size) = 0;
-		virtual void       ClearBuffer(olc::Pixel p, bool bDepth) = 0;
-		static olc::PixelGameEngine* ptrPGE;
+		virtual void PrepareDevice() = 0;
+		virtual rcode CreateDevice(std::vector<void*> params, bool bFullScreen, bool bVSYNC) = 0;
+		virtual rcode DestroyDevice() = 0;
+		virtual void DisplayFrame() = 0;
+		virtual void PrepareDrawing() = 0;
+		virtual void SetDecalMode(const DecalMode& mode) = 0;
+		virtual void DrawLayerQuad(const vf2d& offset, const vf2d& scale, Pixel tint) = 0;
+		virtual void DrawDecalQuad(const DecalInstance& decal) = 0;
+		virtual uint32_t CreateTexture(uint32_t width, uint32_t height, bool filtered = false) = 0;
+		virtual void UpdateTexture(uint32_t id, Sprite* spr) = 0;
+		virtual uint32_t DeleteTexture(uint32_t id) = 0;
+		virtual void ApplyTexture(uint32_t id) = 0;
+		virtual void UpdateViewport(const vi2d& pos, const vi2d& size) = 0;
+		virtual void ClearBuffer(Pixel p, bool bDepth) = 0;
+		static PixelGameEngine* ptrPGE;
 	};
 
 	class Platform
 	{
 	public:
 		virtual ~Platform() = default;
-		virtual olc::rcode ApplicationStartUp() = 0;
-		virtual olc::rcode ApplicationCleanUp() = 0;
-		virtual olc::rcode ThreadStartUp() = 0;
-		virtual olc::rcode ThreadCleanUp() = 0;
-		virtual olc::rcode CreateGraphics(bool bFullScreen, bool bEnableVSYNC, const olc::vi2d& vViewPos, const olc::vi2d& vViewSize) = 0;
-		virtual olc::rcode CreateWindowPane(const olc::vi2d& vWindowPos, olc::vi2d& vWindowSize, bool bFullScreen) = 0;
-		virtual olc::rcode SetWindowTitle(const std::string& s) = 0;
-		virtual olc::rcode StartSystemEventLoop() = 0;
-		virtual olc::rcode HandleSystemEvent() = 0;
-		static olc::PixelGameEngine* ptrPGE;
+		virtual rcode ApplicationStartUp() = 0;
+		virtual rcode ApplicationCleanUp() = 0;
+		virtual rcode ThreadStartUp() = 0;
+		virtual rcode ThreadCleanUp() = 0;
+		virtual rcode CreateGraphics(bool bFullScreen, bool bEnableVSYNC, const vi2d& vViewPos, const vi2d& vViewSize) = 0;
+		virtual rcode CreateWindowPane(const vi2d& vWindowPos, vi2d& vWindowSize, bool bFullScreen) = 0;
+		virtual rcode SetWindowTitle(const std::string& s) = 0;
+		virtual rcode StartSystemEventLoop() = 0;
+		virtual rcode HandleSystemEvent() = 0;
+		static PixelGameEngine* ptrPGE;
 	};
 
 	static std::unique_ptr<Renderer> renderer;
@@ -752,9 +919,9 @@ namespace olc
 		PixelGameEngine();
 		virtual ~PixelGameEngine();
 	public:
-		olc::rcode Construct(int32_t screen_w, int32_t screen_h, int32_t pixel_w, int32_t pixel_h,
-			bool full_screen = false, bool vsync = false, bool cohesion = false);
-		olc::rcode Start();
+		rcode Construct(int32_t screen_w, int32_t screen_h, int32_t pixel_w, int32_t pixel_h,
+		                bool full_screen = false, bool vsync = false, bool cohesion = false);
+		rcode Start();
 
 	public: // User Override Interfaces
 		// Called once on application startup, use to load your resources
@@ -778,9 +945,9 @@ namespace olc
 		// Get Mouse Wheel Delta
 		int32_t GetMouseWheel() const;
 		// Get the mouse in window space
-		const olc::vi2d& GetWindowMouse() const;
+		const vi2d& GetWindowMouse() const;
 		// Gets the mouse as a vector to keep Tarriest happy
-		const olc::vi2d& GetMousePos() const;
+		const vi2d& GetMousePos() const;
 
 	public: // Utility
 		// Returns the width of the screen in "pixels"
@@ -792,7 +959,7 @@ namespace olc
 		// Returns the height of the currently selected drawing target in "pixels"
 		int32_t GetDrawTargetHeight() const;
 		// Returns the currently active draw target
-		olc::Sprite* GetDrawTarget() const;
+		Sprite* GetDrawTarget() const;
 		// Resize the primary screen sprite
 		void SetScreenSize(int w, int h);
 		// Specify which Sprite should be the target of drawing functions, use nullptr
@@ -803,21 +970,21 @@ namespace olc
 		// Gets last update of elapsed time
 		float GetElapsedTime() const;
 		// Gets Actual Window size
-		const olc::vi2d& GetWindowSize() const;
+		const vi2d& GetWindowSize() const;
 		// Gets pixel scale
-		const olc::vi2d& GetPixelSize() const;
+		const vi2d& GetPixelSize() const;
 		// Gets actual pixel scale
-		const olc::vi2d& GetScreenPixelSize() const;
+		const vi2d& GetScreenPixelSize() const;
 
 	public: // CONFIGURATION ROUTINES
 		// Layer targeting functions
 		void SetDrawTarget(uint8_t layer);
 		void EnableLayer(uint8_t layer, bool b);
-		void SetLayerOffset(uint8_t layer, const olc::vf2d& offset);
+		void SetLayerOffset(uint8_t layer, const vf2d& offset);
 		void SetLayerOffset(uint8_t layer, float x, float y);
-		void SetLayerScale(uint8_t layer, const olc::vf2d& scale);
+		void SetLayerScale(uint8_t layer, const vf2d& scale);
 		void SetLayerScale(uint8_t layer, float x, float y);
-		void SetLayerTint(uint8_t layer, const olc::Pixel& tint);
+		void SetLayerTint(uint8_t layer, const Pixel& tint);
 		void SetLayerCustomRenderFunction(uint8_t layer, std::function<void()> f);
 
 		std::vector<LayerDesc>& GetLayers();
@@ -830,80 +997,100 @@ namespace olc
 		void SetPixelMode(Pixel::Mode m);
 		Pixel::Mode GetPixelMode();
 		// Use a custom blend function
-		void SetPixelMode(std::function<olc::Pixel(const int x, const int y, const olc::Pixel& pSource, const olc::Pixel& pDest)> pixelMode);
+		void SetPixelMode(std::function<Pixel(int x, int y, const Pixel& pSource, const Pixel& pDest)> pixelMode);
 		// Change the blend factor form between 0.0f to 1.0f;
 		void SetPixelBlend(float fBlend);
 
 	public: // DRAWING ROUTINES
 		// Draws a single Pixel
-		virtual bool Draw(int32_t x, int32_t y, Pixel p = olc::WHITE);
-		bool Draw(const olc::vi2d& pos, Pixel p = olc::WHITE);
+		virtual bool Draw(int32_t x, int32_t y, Pixel p = WHITE);
+		bool Draw(const vi2d& pos, Pixel p = WHITE);
 		// Draws a line from (x1,y1) to (x2,y2)
-		void DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, Pixel p = olc::WHITE, uint32_t pattern = 0xFFFFFFFF);
-		void DrawLine(const olc::vi2d& pos1, const olc::vi2d& pos2, Pixel p = olc::WHITE, uint32_t pattern = 0xFFFFFFFF);
+		void DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, Pixel p = WHITE, uint32_t pattern = 0xFFFFFFFF);
+		void DrawLine(const vi2d& pos1, const vi2d& pos2, Pixel p = WHITE, uint32_t pattern = 0xFFFFFFFF);
 		// Draws a circle located at (x,y) with radius
-		void DrawCircle(int32_t x, int32_t y, int32_t radius, Pixel p = olc::WHITE, uint8_t mask = 0xFF);
-		void DrawCircle(const olc::vi2d& pos, int32_t radius, Pixel p = olc::WHITE, uint8_t mask = 0xFF);
+		void DrawCircle(int32_t x, int32_t y, int32_t radius, Pixel p = WHITE, uint8_t mask = 0xFF);
+		void DrawCircle(const vi2d& pos, int32_t radius, Pixel p = WHITE, uint8_t mask = 0xFF);
 		// Fills a circle located at (x,y) with radius
-		void FillCircle(int32_t x, int32_t y, int32_t radius, Pixel p = olc::WHITE);
-		void FillCircle(const olc::vi2d& pos, int32_t radius, Pixel p = olc::WHITE);
+		void FillCircle(int32_t x, int32_t y, int32_t radius, Pixel p = WHITE);
+		void FillCircle(const vi2d& pos, int32_t radius, Pixel p = WHITE);
 		// Draws a rectangle at (x,y) to (x+w,y+h)
-		void DrawRect(int32_t x, int32_t y, int32_t w, int32_t h, Pixel p = olc::WHITE);
-		void DrawRect(const olc::vi2d& pos, const olc::vi2d& size, Pixel p = olc::WHITE);
+		void DrawRect(int32_t x, int32_t y, int32_t w, int32_t h, Pixel p = WHITE);
+		void DrawRect(const vi2d& pos, const vi2d& size, Pixel p = WHITE);
 		// Fills a rectangle at (x,y) to (x+w,y+h)
-		void FillRect(int32_t x, int32_t y, int32_t w, int32_t h, Pixel p = olc::WHITE);
-		void FillRect(const olc::vi2d& pos, const olc::vi2d& size, Pixel p = olc::WHITE);
+		void FillRect(int32_t x, int32_t y, int32_t w, int32_t h, Pixel p = WHITE);
+		void FillRect(const vi2d& pos, const vi2d& size, Pixel p = WHITE);
 		// Draws a triangle between points (x1,y1), (x2,y2) and (x3,y3)
-		void DrawTriangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, Pixel p = olc::WHITE);
-		void DrawTriangle(const olc::vi2d& pos1, const olc::vi2d& pos2, const olc::vi2d& pos3, Pixel p = olc::WHITE);
+		void DrawTriangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, Pixel p = WHITE);
+		void DrawTriangle(const vi2d& pos1, const vi2d& pos2, const vi2d& pos3, Pixel p = WHITE);
 		// Flat fills a triangle between points (x1,y1), (x2,y2) and (x3,y3)
-		void FillTriangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, Pixel p = olc::WHITE);
-		void FillTriangle(const olc::vi2d& pos1, const olc::vi2d& pos2, const olc::vi2d& pos3, Pixel p = olc::WHITE);
+		void FillTriangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, Pixel p = WHITE);
+		void FillTriangle(const vi2d& pos1, const vi2d& pos2, const vi2d& pos3, Pixel p = WHITE);
 		// Draws an entire sprite at well location (x,y)
-		void DrawSprite(int32_t x, int32_t y, Sprite* sprite, uint32_t scale = 1, uint8_t flip = olc::Sprite::NONE);
-		void DrawSprite(const olc::vi2d& pos, Sprite* sprite, uint32_t scale = 1, uint8_t flip = olc::Sprite::NONE);
+		void DrawSprite(int32_t x, int32_t y, Sprite* sprite, uint32_t scale = 1, uint8_t flip = Sprite::NONE);
+		void DrawSprite(const vi2d& pos, Sprite* sprite, uint32_t scale = 1, uint8_t flip = Sprite::NONE);
 		// Draws an area of a sprite at location (x,y), where the
 		// selected area is (ox,oy) to (ox+w,oy+h)
-		void DrawPartialSprite(int32_t x, int32_t y, Sprite* sprite, int32_t ox, int32_t oy, int32_t w, int32_t h, uint32_t scale = 1, uint8_t flip = olc::Sprite::NONE);
-		void DrawPartialSprite(const olc::vi2d& pos, Sprite* sprite, const olc::vi2d& sourcepos, const olc::vi2d& size, uint32_t scale = 1, uint8_t flip = olc::Sprite::NONE);
+		void DrawPartialSprite(int32_t x, int32_t y, Sprite* sprite, int32_t ox, int32_t oy, int32_t w, int32_t h,
+		                       uint32_t scale = 1, uint8_t flip =
+			                       Sprite::NONE);
+		void DrawPartialSprite(const vi2d& pos, Sprite* sprite, const vi2d& sourcepos, const vi2d& size, uint32_t scale = 1,
+		                       uint8_t flip =
+			                       Sprite::NONE);
 
 		// Decal Quad functions
-		void SetDecalMode(const olc::DecalMode& mode);
+		void SetDecalMode(const DecalMode& mode);
 		// Draws a whole decal, with optional scale and tinting
-		void DrawDecal(const olc::vf2d& pos, olc::Decal* decal, const olc::vf2d& scale = { 1.0f,1.0f }, const olc::Pixel& tint = olc::WHITE);
+		void DrawDecal(const vf2d& pos, Decal* decal, const vf2d& scale = {1.0f, 1.0f}, const Pixel& tint = WHITE);
 		// Draws a region of a decal, with optional scale and tinting
-		void DrawPartialDecal(const olc::vf2d& pos, olc::Decal* decal, const olc::vf2d& source_pos, const olc::vf2d& source_size, const olc::vf2d& scale = { 1.0f,1.0f }, const olc::Pixel& tint = olc::WHITE);
-		void DrawPartialDecal(const olc::vf2d& pos, const olc::vf2d& size, olc::Decal* decal, const olc::vf2d& source_pos, const olc::vf2d& source_size, const olc::Pixel& tint = olc::WHITE);
+		void DrawPartialDecal(const vf2d& pos, Decal* decal, const vf2d& source_pos, const vf2d& source_size,
+		                      const vf2d& scale = {1.0f, 1.0f}, const
+		                      Pixel& tint = WHITE);
+		void DrawPartialDecal(const vf2d& pos, const vf2d& size, Decal* decal, const vf2d& source_pos,
+		                      const vf2d& source_size, const
+		                      Pixel& tint = WHITE);
 		// Draws fully user controlled 4 vertices, pos(pixels), uv(pixels), colours
-		void DrawExplicitDecal(olc::Decal* decal, const olc::vf2d* pos, const olc::vf2d* uv, const olc::Pixel* col);
+		void DrawExplicitDecal(Decal* decal, const vf2d* pos, const vf2d* uv, const Pixel* col);
 		// Draws a decal with 4 arbitrary points, warping the texture to look "correct"
-		void DrawWarpedDecal(olc::Decal* decal, const olc::vf2d(&pos)[4], const olc::Pixel& tint = olc::WHITE);
-		void DrawWarpedDecal(olc::Decal* decal, const olc::vf2d* pos, const olc::Pixel& tint = olc::WHITE);
-		void DrawWarpedDecal(olc::Decal* decal, const std::array<olc::vf2d, 4>& pos, const olc::Pixel& tint = olc::WHITE);
+		void DrawWarpedDecal(Decal* decal, const vf2d (&pos)[4], const Pixel& tint = WHITE);
+		void DrawWarpedDecal(Decal* decal, const vf2d* pos, const Pixel& tint = WHITE);
+		void DrawWarpedDecal(Decal* decal, const std::array<vf2d, 4>& pos, const Pixel& tint = WHITE);
 		// As above, but you can specify a region of a decal source sprite
-		void DrawPartialWarpedDecal(olc::Decal* decal, const olc::vf2d(&pos)[4], const olc::vf2d& source_pos, const olc::vf2d& source_size, const olc::Pixel& tint = olc::WHITE);
-		void DrawPartialWarpedDecal(olc::Decal* decal, const olc::vf2d* pos, const olc::vf2d& source_pos, const olc::vf2d& source_size, const olc::Pixel& tint = olc::WHITE);
-		void DrawPartialWarpedDecal(olc::Decal* decal, const std::array<olc::vf2d, 4>& pos, const olc::vf2d& source_pos, const olc::vf2d& source_size, const olc::Pixel& tint = olc::WHITE);
+		void DrawPartialWarpedDecal(Decal* decal, const vf2d (&pos)[4], const vf2d& source_pos, const vf2d& source_size,
+		                            const
+		                            Pixel& tint = WHITE);
+		void DrawPartialWarpedDecal(Decal* decal, const vf2d* pos, const vf2d& source_pos, const vf2d& source_size, const
+		                            Pixel& tint = WHITE);
+		void DrawPartialWarpedDecal(Decal* decal, const std::array<vf2d, 4>& pos, const vf2d& source_pos,
+		                            const vf2d& source_size, const
+		                            Pixel& tint = WHITE);
 		// Draws a decal rotated to specified angle, wit point of rotation offset
-		void DrawRotatedDecal(const olc::vf2d& pos, olc::Decal* decal, const float fAngle, const olc::vf2d& center = { 0.0f, 0.0f }, const olc::vf2d& scale = { 1.0f,1.0f }, const olc::Pixel& tint = olc::WHITE);
-		void DrawPartialRotatedDecal(const olc::vf2d& pos, olc::Decal* decal, const float fAngle, const olc::vf2d& center, const olc::vf2d& source_pos, const olc::vf2d& source_size, const olc::vf2d& scale = { 1.0f, 1.0f }, const olc::Pixel& tint = olc::WHITE);
+		void DrawRotatedDecal(const vf2d& pos, Decal* decal, float fAngle, const vf2d& center = {0.0f, 0.0f},
+		                      const vf2d& scale = {1.0f, 1.0f}, const
+		                      Pixel& tint = WHITE);
+		void DrawPartialRotatedDecal(const vf2d& pos, Decal* decal, float fAngle, const vf2d& center,
+		                             const vf2d& source_pos, const
+		                             vf2d& source_size, const vf2d& scale = {1.0f, 1.0f}, const Pixel& tint = WHITE);
 		// Draws a multiline string as a decal, with tiniting and scaling
-		void DrawStringDecal(const olc::vf2d& pos, const std::string& sText, const Pixel col = olc::WHITE, const olc::vf2d& scale = { 1.0f, 1.0f });
-		void DrawStringPropDecal(const olc::vf2d& pos, const std::string& sText, const Pixel col = olc::WHITE, const olc::vf2d& scale = { 1.0f, 1.0f });
+		void DrawStringDecal(const vf2d& pos, const std::string& sText, Pixel col = WHITE,
+		                     const vf2d& scale = {1.0f, 1.0f});
+		void DrawStringPropDecal(const vf2d& pos, const std::string& sText, Pixel col = WHITE,
+		                         const vf2d& scale = {1.0f, 1.0f});
 		// Draws a single shaded filled rectangle as a decal
-		void FillRectDecal(const olc::vf2d& pos, const olc::vf2d& size, const olc::Pixel col = olc::WHITE);
+		void FillRectDecal(const vf2d& pos, const vf2d& size, Pixel col = WHITE);
 		// Draws a corner shaded rectangle as a decal
-		void GradientFillRectDecal(const olc::vf2d& pos, const olc::vf2d& size, const olc::Pixel colTL, const olc::Pixel colBL, const olc::Pixel colBR, const olc::Pixel colTR);
+		void GradientFillRectDecal(const vf2d& pos, const vf2d& size, Pixel colTL, Pixel colBL, Pixel colBR, Pixel
+		                           colTR);
 
 		// Draws a single line of text - traditional monospaced
-		void DrawString(int32_t x, int32_t y, const std::string& sText, Pixel col = olc::WHITE, uint32_t scale = 1);
-		void DrawString(const olc::vi2d& pos, const std::string& sText, Pixel col = olc::WHITE, uint32_t scale = 1);
-		olc::vi2d GetTextSize(const std::string& s);
+		void DrawString(int32_t x, int32_t y, const std::string& sText, Pixel col = WHITE, uint32_t scale = 1);
+		void DrawString(const vi2d& pos, const std::string& sText, Pixel col = WHITE, uint32_t scale = 1);
+		vi2d GetTextSize(const std::string& s);
 
 		// Draws a single line of text - non-monospaced
-		void DrawStringProp(int32_t x, int32_t y, const std::string& sText, Pixel col = olc::WHITE, uint32_t scale = 1);
-		void DrawStringProp(const olc::vi2d& pos, const std::string& sText, Pixel col = olc::WHITE, uint32_t scale = 1);
-		olc::vi2d GetTextSizeProp(const std::string& s);
+		void DrawStringProp(int32_t x, int32_t y, const std::string& sText, Pixel col = WHITE, uint32_t scale = 1);
+		void DrawStringProp(const vi2d& pos, const std::string& sText, Pixel col = WHITE, uint32_t scale = 1);
+		vi2d GetTextSizeProp(const std::string& s);
 
 		// Clears entire draw target to Pixel
 		void Clear(Pixel p);
@@ -915,56 +1102,56 @@ namespace olc
 
 	private: // Inner mysterious workings
 		Sprite* pDrawTarget = nullptr;
-		Pixel::Mode	nPixelMode = Pixel::NORMAL;
-		float		fBlendFactor = 1.0f;
-		olc::vi2d	vScreenSize = { 256, 240 };
-		olc::vf2d	vInvScreenSize = { 1.0f / 256.0f, 1.0f / 240.0f };
-		olc::vi2d	vPixelSize = { 4, 4 };
-		olc::vi2d   vScreenPixelSize = { 4, 4 };
-		olc::vi2d	vMousePos = { 0, 0 };
-		int32_t		nMouseWheelDelta = 0;
-		olc::vi2d	vMousePosCache = { 0, 0 };
-		olc::vi2d   vMouseWindowPos = { 0, 0 };
-		int32_t		nMouseWheelDeltaCache = 0;
-		olc::vi2d	vWindowSize = { 0, 0 };
-		olc::vi2d	vViewPos = { 0, 0 };
-		olc::vi2d	vViewSize = { 0,0 };
-		bool		bFullScreen = false;
-		olc::vf2d	vPixel = { 1.0f, 1.0f };
-		bool		bHasInputFocus = false;
-		bool		bHasMouseFocus = false;
-		bool		bEnableVSYNC = false;
-		float		fFrameTimer = 1.0f;
-		float		fLastElapsed = 0.0f;
-		int			nFrameCount = 0;
+		Pixel::Mode nPixelMode = Pixel::NORMAL;
+		float fBlendFactor = 1.0f;
+		vi2d vScreenSize = {256, 240};
+		vf2d vInvScreenSize = {1.0f / 256.0f, 1.0f / 240.0f};
+		vi2d vPixelSize = {4, 4};
+		vi2d vScreenPixelSize = {4, 4};
+		vi2d vMousePos = {0, 0};
+		int32_t nMouseWheelDelta = 0;
+		vi2d vMousePosCache = {0, 0};
+		vi2d vMouseWindowPos = {0, 0};
+		int32_t nMouseWheelDeltaCache = 0;
+		vi2d vWindowSize = {0, 0};
+		vi2d vViewPos = {0, 0};
+		vi2d vViewSize = {0, 0};
+		bool bFullScreen = false;
+		vf2d vPixel = {1.0f, 1.0f};
+		bool bHasInputFocus = false;
+		bool bHasMouseFocus = false;
+		bool bEnableVSYNC = false;
+		float fFrameTimer = 1.0f;
+		float fLastElapsed = 0.0f;
+		int nFrameCount = 0;
 		Sprite* fontSprite = nullptr;
 		Decal* fontDecal = nullptr;
 		Sprite* pDefaultDrawTarget = nullptr;
 		std::vector<LayerDesc> vLayers;
-		uint8_t		nTargetLayer = 0;
-		uint32_t	nLastFPS = 0;
-		bool        bPixelCohesion = false;
-		DecalMode   nDecalMode = DecalMode::NORMAL;
-		std::function<olc::Pixel(const int x, const int y, const olc::Pixel&, const olc::Pixel&)> funcPixelMode;
+		uint8_t nTargetLayer = 0;
+		uint32_t nLastFPS = 0;
+		bool bPixelCohesion = false;
+		DecalMode nDecalMode = DecalMode::NORMAL;
+		std::function<Pixel(int x, int y, const Pixel&, const Pixel&)> funcPixelMode;
 		std::chrono::time_point<std::chrono::system_clock> m_tp1, m_tp2;
-		std::vector<olc::vi2d> vFontSpacing;
+		std::vector<vi2d> vFontSpacing;
 
 		// State of keyboard
-		bool		pKeyNewState[256] = { 0 };
-		bool		pKeyOldState[256] = { 0 };
-		HWButton	pKeyboardState[256] = { 0 };
+		bool pKeyNewState[256] = {false};
+		bool pKeyOldState[256] = {false};
+		HWButton pKeyboardState[256] = {false};
 
 		// State of mouse
-		bool		pMouseNewState[nMouseButtons] = { 0 };
-		bool		pMouseOldState[nMouseButtons] = { 0 };
-		HWButton	pMouseState[nMouseButtons] = { 0 };
+		bool pMouseNewState[nMouseButtons] = {false};
+		bool pMouseOldState[nMouseButtons] = {false};
+		HWButton pMouseState[nMouseButtons] = {false};
 
 		// The main engine thread
-		void		EngineThread();
+		void EngineThread();
 
 		// At the very end of this file, chooses which
 		// components to compile
-		void        olc_ConfigureSystem();
+		void olc_ConfigureSystem();
 
 		// If anything sets this flag to false, the engine
 		// "should" shut down gracefully
@@ -997,7 +1184,7 @@ namespace olc
 	// O------------------------------------------------------------------------------O
 	class PGEX
 	{
-		friend class olc::PixelGameEngine;
+		friend class PixelGameEngine;
 	protected:
 		static PixelGameEngine* pge;
 	};
