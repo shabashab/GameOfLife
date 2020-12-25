@@ -3,7 +3,7 @@
 
 #include "Utils/Vector2.h"
 #include "Utils/Matrix.h"
-#include "Game/Cell.h"
+#include "Cell.h"
 
 namespace gol
 {

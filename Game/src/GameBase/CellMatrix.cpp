@@ -1,4 +1,4 @@
-﻿#include "Game/CellMatrix.h"
+﻿#include "GameBase/CellMatrix.h"
 
 gol::CellMatrix::CellMatrix(size_t width, size_t height) :
 	Matrix(width, height,

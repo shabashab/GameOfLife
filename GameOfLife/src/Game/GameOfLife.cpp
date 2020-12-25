@@ -1,7 +1,7 @@
 #include "Game/GameOfLife.h"
 #include "Game/GameOfLifeCellMatrix.h"
 
-void gol::GameOfLife::fillCellByCursorPos(const Vector2s cursorPosition, bool newValue)
+void gol::GameOfLife::fillCellByCursorPos(const Vector2s cursorPosition, bool newValue) const
 {
 	const Vector2s cell_position(
 		cursorPosition.x / this->_cellSize.x,
@@ -15,9 +15,9 @@ gol::Vector2s gol::GameOfLife::getMousePositionVector() const
 	return {static_cast<size_t>(this->GetMouseX()), static_cast<size_t>(this->GetMouseY())};
 }
 
-gol::GameOfLife::GameOfLife()
+gol::GameOfLife::GameOfLife() : _cellSize(20, 20)
 {
-	this->_cellSize = Vector2s(20, 20);
+	
 }
 
 bool gol::GameOfLife::OnUserCreate()
@@ -44,31 +44,36 @@ bool gol::GameOfLife::OnUserUpdate(float fDeltaTime)
 	if (this->_renderGrid)
 		this->_gridRenderer->render(*this);
 
-	if (GetMouse(0).bPressed)
+	if(this->_isPlaying)
 	{
-		this->fillCellByCursorPos(this->getMousePositionVector(), true);
-	}
-
-	if (GetMouse(1).bPressed)
+		_playingTime += fDeltaTime;
+		
+		if(_playingTime > 0.5f)
+		{
+			this->_cellMatrix->step();
+			_playingTime = 0;
+		}
+	} else
 	{
-		this->fillCellByCursorPos(this->getMousePositionVector(), false);
-	}
+		if (GetMouse(0).bPressed)
+			this->fillCellByCursorPos(this->getMousePositionVector(), true);
 
-	if (GetKey(olc::RIGHT).bHeld)
-	{
-		_cellMatrix->step();
-	}
+		if (GetMouse(1).bPressed)
+			this->fillCellByCursorPos(this->getMousePositionVector(), false);
 
+		if (GetKey(olc::RIGHT).bHeld)
+			_cellMatrix->step();
+
+		if (GetKey(olc::C).bPressed)
+			_cellMatrix->reset();
+	}
+	
 	if (GetKey(olc::A).bPressed)
-	{
 		this->_renderGrid = !this->_renderGrid;
-	}
 
-	if (GetKey(olc::C).bPressed)
-	{
-		_cellMatrix->reset();
-	}
-
+	if (GetKey(olc::SPACE).bPressed)
+		this->_isPlaying = !this->_isPlaying;
+		
 	this->_cellMatrixRenderer->render(*this);
 
 	return true;

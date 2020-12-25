@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include <mutex>
-#include "CellMatrix.h"
+#include "GameBase/CellMatrix.h"
+
 
 namespace gol
 {

@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Graphics/IRenderer.h"
-#include "Game/CellMatrix.h"
+#include "GameBase/CellMatrix.h"
 #include "Utils/Vector2.h"
 
 namespace gol
